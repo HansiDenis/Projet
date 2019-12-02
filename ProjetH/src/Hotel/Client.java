@@ -1,3 +1,4 @@
+package Hotel;
 public class Client {
 
 	private String nom;

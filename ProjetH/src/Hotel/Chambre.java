@@ -1,3 +1,5 @@
+package Hotel;
+
 public class Chambre {
 
 	private String type;
