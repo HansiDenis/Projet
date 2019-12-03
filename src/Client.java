@@ -7,16 +7,35 @@ public class Client {
     private String telephone;
 
     public Client() {
-        this("non renseigné", "non renseigné", "non renseigné", "non renseigné", "non renseigné");
+        this("non renseigné", "non renseigné", "non renseigné", "non renseigné", "non renseigné", "non renseigné");
     }
 
     //test validite naissance, email, tel
-    public Client(String nom, String prenom, String naissance, String email, String tel) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.dateNaissance = naissance;
-        this.email = email;
-        this.telephone = tel;
+    public Client(String name, String firstName, String birth, String mail, String phone, String ind) {
+        nom = name;
+        prenom = firstName;
+
+        if (birth.matches("[0-3]+[0-9]+/[0 1]+[0-9]+/[1 2]+[0 9]+[0-9]+[0-9]+")) {
+            dateNaissance = birth;
+        } else {
+            System.out.println("Date de naissance invalide M(Mme): " + this.nom);
+        }
+
+        if ((mail.indexOf('.', mail.indexOf("@")) != -1) && (mail.indexOf("@") != -1)) {
+            email = mail;
+        } else {
+            System.out.println("Adresse e-mail invalide M(Mme) : " + this.nom);
+        }
+
+        if ((phone.length() == 10) && (phone.matches("[0-9]*"))) {
+            if (ind.matches("\\+[0-9]+[0-9]+")) {
+                telephone = ind + phone.substring(1);
+            } else {
+                telephone = phone;
+            }
+        } else {
+            System.out.println("Numéro de téléphone invalide M(Mme) : " + this.nom);
+        }
     }
 
     public void affichage() {
