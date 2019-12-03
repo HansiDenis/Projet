@@ -7,7 +7,7 @@ public class Test {
         Client c = new Client();
         Hotel h = new Hotel();
 
-        h.reservation(1, c, 1, "simple");
+        h.reservation(2, c, 1, "simple");
         h.ticket(c);
         h.affichage();
     }
