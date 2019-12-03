@@ -1,4 +1,4 @@
-package HotelBay;
+package Projet;
 
 import java.text.*;
 import java.util.Date;
