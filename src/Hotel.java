@@ -7,6 +7,39 @@ public class Hotel {
     private Client[] client;
     private Chambre[] chambres;
     private int nbSimple;
+
+    public int getNbDouble() {
+        return nbDouble;
+    }
+
+    public void setNbDouble(int nbDouble) {
+        this.nbDouble = nbDouble;
+    }
+
+    public int getNbTriple() {
+        return nbTriple;
+    }
+
+    public void setNbTriple(int nbTriple) {
+        this.nbTriple = nbTriple;
+    }
+
+    public int getNbDeluxe() {
+        return nbDeluxe;
+    }
+
+    public void setNbDeluxe(int nbDeluxe) {
+        this.nbDeluxe = nbDeluxe;
+    }
+
+    public int getNbSimple() {
+        return nbSimple;
+    }
+
+    public void setNbSimple(int nbSimple) {
+        this.nbSimple = nbSimple;
+    }
+
     private int nbDouble;
     private int nbTriple;
     private int nbDeluxe;
