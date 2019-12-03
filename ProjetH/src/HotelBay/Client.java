@@ -1,4 +1,4 @@
-package projet;
+package HotelBay;
 
 public class Client {
 
