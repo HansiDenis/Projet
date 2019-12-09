@@ -127,6 +127,7 @@ public class Hotel {
             return 0;
         } else {
             if (this.disponibilite(type) == -1) {
+                System.out.println("Le type de chambre que vous souhaitez n'est pas disponible");
                 return 0;
             } else {
                 int numChambre = this.disponibilite(type);
@@ -201,7 +202,7 @@ public class Hotel {
         c.affichage();
         int numChambre;
         int i = 0;
-        while (client[i] != c) {
+        while (client[i] != c && i <= 38) {
             i += 1;
         }
         numChambre = i + 1;

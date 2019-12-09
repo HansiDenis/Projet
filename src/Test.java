@@ -6,7 +6,9 @@ public class Test {
         h.reservation(1, c, 1, "double");
         h.ticket(c);
         h.affichage();
-        Casino casino = new Casino();
+        Casino casino = new Casino(c);
         casino.create();
+        casino.miser("pair", 20);
+        System.out.println(casino.getGainpl());
     }
 }

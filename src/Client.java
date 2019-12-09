@@ -5,6 +5,9 @@ public class Client {
     private String dateNaissance;
     private String email;
     private String telephone;
+    private double note;
+    private int tickets;
+    private int jet = 20;
 
     public Client() {
         this("non renseigné", "non renseigné", "non renseigné", "non renseigné", "non renseigné", "non renseigné");
@@ -14,6 +17,7 @@ public class Client {
     public Client(String name, String firstName, String birth, String mail, String phone, String ind) {
         nom = name;
         prenom = firstName;
+        note = 0.0;
 
         if (birth.matches("[0-3]+[0-9]+/[0 1]+[0-9]+/[1 2]+[0 9]+[0-9]+[0-9]+")) {
             dateNaissance = birth;
@@ -83,4 +87,27 @@ public class Client {
     }
 
 
+    public int getJet() {
+        return jet;
+    }
+
+    public void setJet(int jet) {
+        this.jet = jet;
+    }
+
+    public int getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(int tickets) {
+        this.tickets = tickets;
+    }
+
+    public double getNote() {
+        return note;
+    }
+
+    public void setNote(double note) {
+        this.note = note;
+    }
 }

@@ -1,7 +1,14 @@
 import java.util.HashMap;
+import java.util.Random;
 
 public class Casino {
-    public static HashMap<Integer, String[]> Roulette = new HashMap<Integer, String[]>(37);
+    private static HashMap<Integer, String[]> Roulette = new HashMap<Integer, String[]>(37);
+    private Client joueur;
+    private int gainpl = 0;
+
+    public Casino(Client c) {
+        this.joueur = c;
+    }
 
     public void create() {
         Roulette.put(0, new String[]{"zéro", "vert"});
@@ -30,8 +37,145 @@ public class Casino {
                 } else Roulette.put(i, new String[]{"impair", "noir"});
             }
         }
-        /**for (int i=0;i<=36;i++){
-         System.out.println(Arrays.toString(Roulette.get(i)));
-         }**/
     }
+
+    public int getGainpl() {
+        return gainpl;
+    }
+
+    public void miser(String mise, int valeur) {
+        int n = roule();
+        System.out.println(n);
+        switch (mise) {
+            case "pair":
+                if (gagne(n, "pair")) {
+                    System.out.println("Vous avez gagné et avez doublé votre mise!");
+                    gainpl += valeur;
+                    break;
+                } else {
+                    System.out.println("Aïe!C'est loupé dommage...Vous aurez plus de chance la prochaine fois!");
+                    gainpl -= valeur;
+                    break;
+                }
+            case "impair":
+                if (gagne(n, "impair")) {
+                    System.out.println("Vous avez gagné et avez doublé votre mise!");
+                    gainpl += valeur;
+                    break;
+                } else {
+                    System.out.println("Aïe!C'est loupé dommage...Vous aurez plus de chance la prochaine fois!");
+                    gainpl -= valeur;
+                    break;
+                }
+            case "noir":
+                if (gagne(n, "noir")) {
+                    System.out.println("Vous avez gagné et avez doublé votre mise!");
+                    gainpl += valeur;
+                    break;
+                } else {
+                    System.out.println("Aïe!C'est loupé dommage...Vous aurez plus de chance la prochaine fois!");
+                    gainpl -= valeur;
+                    break;
+                }
+            case "rouge":
+                if (gagne(n, "rouge")) {
+                    System.out.println("Vous avez gagné et avez doublé votre mise!");
+                    gainpl += valeur;
+                    break;
+                } else {
+                    System.out.println("Aïe!C'est loupé dommage...Vous aurez plus de chance la prochaine fois!");
+                    gainpl -= valeur;
+                    break;
+                }
+            case "manque":
+                if (gagne(n, "manque")) {
+                    System.out.println("Vous avez gagné et avez doublé votre mise!");
+                    gainpl += valeur;
+                    break;
+                } else {
+                    System.out.println("Aïe!C'est loupé dommage...Vous aurez plus de chance la prochaine fois!");
+                    gainpl -= valeur;
+                    break;
+                }
+            case "passe":
+                if (gagne(n, "passe")) {
+                    System.out.println("Vous avez gagné et avez doublé votre mise!");
+                    gainpl += valeur;
+                    break;
+                } else {
+                    System.out.println("Aïe!C'est loupé dommage...Vous aurez plus de chance la prochaine fois!");
+                    gainpl -= valeur;
+                    break;
+                }
+            case "zéro":
+                if (gagne(n, "zéro")) {
+                    System.out.println("Vous avez gagné et avez multiplié votre mise par 35 !");
+                    gainpl += valeur;
+                    break;
+                } else {
+                    System.out.println("Aïe!C'est loupé dommage...Vous aurez plus de chance la prochaine fois!");
+                    gainpl -= valeur;
+                    break;
+                }
+
+
+        }
+    }
+
+    public boolean gagne(int n, String mise) {
+        System.out.println("Rien ne va plus!");
+        switch (mise) {
+            case "pair":
+                if (Roulette.get(n)[0].equals("pair")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            case "impair":
+                if (Roulette.get(n)[0].equals("impair")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            case "noir":
+                if (Roulette.get(n)[1].equals("noir")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            case "rouge":
+                if (Roulette.get(n)[1].equals("rouge")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            case "manque":
+                if (n <= 18) {
+                    return true;
+                } else {
+                    return false;
+                }
+            case "passe":
+                if (n >= 19) {
+                    return true;
+                } else {
+                    return false;
+                }
+            case "zéro":
+                if (n == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            default:
+                return false;
+        }
+    }
+
+    public int roule() {
+        Random r = new Random();
+        int n = r.nextInt(38) - 1;
+        return n;
+    }
+
 }
