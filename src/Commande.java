@@ -7,6 +7,14 @@ public class Commande {
         this.prix = 0.0;
     }
 
+    public boolean[] getCommande() {
+        return commande;
+    }
+
+    public double getPrix() {
+        return prix;
+    }
+
     public void commandeFormule(String rep) {
         if (rep.equals("Mojito")) {
             prix = 6.0;
@@ -68,6 +76,10 @@ public class Commande {
 
     public void useTickets(int nb) {
         prix = prix - nb * 5;
+    }
+
+    public void afficheCommande() {
+        System.out.println("Prix total de la commande : " + this.prix + "€");
     }
 
 }
