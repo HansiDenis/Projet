@@ -5,20 +5,20 @@ public class Client {
     private String dateNaissance;
     private String email;
     private String telephone;
+    private int duree;
     private double note;
     private int tickets;
-    private int jet = 20;
 
     public Client() {
-        this("non renseigné", "non renseigné", "non renseigné", "non renseigné", "non renseigné", "non renseigné");
+        this("non renseigné", "non renseigné", "non renseigné", "non renseigné", "non renseigné", "non renseigné", 0);
     }
 
     //test validite naissance, email, tel
-    public Client(String name, String firstName, String birth, String mail, String phone, String ind) {
+    public Client(String name, String firstName, String birth, String mail, String phone, String ind, int time) {
         nom = name;
         prenom = firstName;
         note = 0.0;
-
+        duree = time;
         if (birth.matches("[0-3]+[0-9]+/[0 1]+[0-9]+/[1 2]+[0 9]+[0-9]+[0-9]+")) {
             dateNaissance = birth;
         } else {
@@ -84,15 +84,6 @@ public class Client {
 
     public void setTel(String numero) {
         this.telephone = numero;
-    }
-
-
-    public int getJet() {
-        return jet;
-    }
-
-    public void setJet(int jet) {
-        this.jet = jet;
     }
 
     public int getTickets() {
