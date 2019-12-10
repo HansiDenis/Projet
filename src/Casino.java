@@ -196,7 +196,8 @@ public class Casino {
     public int roule() {
         Random r = new Random();
         int n = r.nextInt(38) - 1;
-        return n;
+        if (n >= 0) return n;
+        else return 0;
     }
 
 }
