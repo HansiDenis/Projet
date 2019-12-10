@@ -3,7 +3,7 @@ import java.util.Date;
 
 public class Hotel {
 
-    private static int[] numChambre = new int[40];
+    private static int[] numChambre;
     private Client[] client;
     private Chambre[] chambres;
     private int nbSimple;
@@ -55,9 +55,10 @@ public class Hotel {
         this.nbDouble = nbDouble;
         this.nbTriple = nbTriple;
         this.nbDeluxe = nbDeluxe;
-        chambres = new Chambre[40];
-        disponibilite = new String[40];
-        client = new Client[40];
+        chambres = new Chambre[nbSimple + nbDouble + nbTriple + nbDeluxe];
+        disponibilite = new String[nbSimple + nbDouble + nbTriple + nbDeluxe];
+        client = new Client[nbSimple + nbDouble + nbTriple + nbDeluxe];
+        numChambre = new int[nbSimple + nbDouble + nbTriple + nbDeluxe];
         for (int i = 0; i < nbSimple; i++) {
             this.chambres[i] = new Chambre("simple");
         }
@@ -70,7 +71,7 @@ public class Hotel {
         for (int i = 0; i < nbDeluxe; i++) {
             this.chambres[nbSimple + nbDouble + nbTriple + i] = new Chambre("deluxe");
         }
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < nbSimple + nbDouble + nbTriple + nbDeluxe; i++) {
             disponibilite[i] = "libre";
             numChambre[i] = i + 1;
         }
