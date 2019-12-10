@@ -18,7 +18,12 @@ public class Client {
         nom = name;
         prenom = firstName;
         note = 0.0;
-        duree = time;
+        if (time >= 1) {
+            duree = time;
+        } else {
+            System.out.println("Durée renseignée incorrecte");
+            duree = 0;
+        }
         if (birth.matches("[0-3]+[0-9]+/[0 1]+[0-9]+/[1 2]+[0 9]+[0-9]+[0-9]+")) {
             dateNaissance = birth;
         } else {
@@ -46,6 +51,9 @@ public class Client {
         System.out.println("Nom et prénom du client : " + this.nom + " " + this.prenom + "\ne-mail : " + this.email + "\nTélephone : " + this.telephone);
     }
 
+    public int getDuree() {
+        return duree;
+    }
     public String getNom() {
         return this.nom;
     }
