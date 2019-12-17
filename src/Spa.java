@@ -1,6 +1,6 @@
 public class Spa {
 
-    public int prix;
+    public double prix;
     private int Relaxant;
     private int PierresChaudes;
     private int ElixirBougie;
@@ -20,12 +20,21 @@ public class Spa {
         System.out.println("     Tarifs du Spa     \nMassage relaxant : 50€\nMassage aux pierres chaudes : 70€\nMassage à l'elixir de bougie : 80€");
     }
 
-    public void calculPrix() {
-        prix = prix + Relaxant * 50 + PierresChaudes * 70 + ElixirBougie * 80;
+    public double Prix(String rep) {
+        switch (rep) {
+            case "relaxant":
+                return prix = 50;
+            case "pierres":
+                return prix = 70;
+            case "elixir":
+                return prix = 80;
+            default:
+                System.out.println("Mauvais type de massage renseigné.");
+                return prix = 0;
+        }
     }
 
     public void affichePrix() {
-        this.calculPrix();
-        System.out.println("Coût total : " + prix + "€");
+        System.out.println("Coût du massage : " + prix + "€");
     }
 }

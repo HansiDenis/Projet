@@ -11,6 +11,10 @@ public class Client {
     private int gains;
     private int jetons;
 
+    public void setDateNaissance(String dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
+
     /**
      * @param name
      * @param firstName
@@ -129,8 +133,8 @@ public class Client {
         return tickets;
     }
 
-    public void setTickets(int tickets) {
-        this.tickets = tickets;
+    public void setTickets() {
+        this.tickets = tickets - 1;
     }
 
     public double getNote() {

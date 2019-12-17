@@ -15,34 +15,38 @@ public class Commande {
         return prix;
     }
 
-    public void commandeFormule(String rep) {
-        if (rep.equals("Mojito")) {
+    public double commandeFormule(String rep) {
+        if (rep.equals("mojito")) {
             prix = 6.0;
             commande[1] = true;
             commande[4] = true;
-        } else if (rep.equals("Daiquiri")) {
-            prix = 6.0;
+        } else if (rep.equals("daiquiri")) {
+            prix = 8.0;
             commande[1] = true;
             commande[2] = true;
             commande[4] = true;
         }
-
+        return prix;
     }
 
     public double commandeCarte(boolean entrée, boolean plat, boolean accompagnement, boolean dessert, boolean boisson) {
         if (entrée) {
             commande[0] = entrée;
             prix += 3.0;
-        } else if (plat) {
+        }
+        if (plat) {
             commande[1] = plat;
             prix += 5.0;
-        } else if (accompagnement) {
+        }
+        if (accompagnement) {
             commande[2] = accompagnement;
             prix += 2.0;
-        } else if (dessert) {
+        }
+        if (dessert) {
             commande[3] = dessert;
             prix += 3.5;
-        } else if (boisson) {
+        }
+        if (boisson) {
             commande[4] = boisson;
             prix += 2.0;
         }
@@ -53,10 +57,12 @@ public class Commande {
         if (entrée) {
             commande[0] = entrée;
             prix += 3.0;
-        } else if (accompagnement) {
+        }
+        if (accompagnement) {
             commande[2] = accompagnement;
             prix += 2.0;
-        } else if (dessert) {
+        }
+        if (dessert) {
             commande[3] = dessert;
             prix += 3.5;
         }
@@ -67,19 +73,25 @@ public class Commande {
         if (entrée) {
             commande[0] = entrée;
             prix += 3.0;
-        } else if (dessert) {
+        }
+        if (dessert) {
             commande[3] = dessert;
             prix += 3.5;
         }
         return prix;
     }
 
-    public void useTickets(int nb) {
-        prix = prix - nb * 5;
+    public void useTicket() {
+        if (prix > 5) {
+            prix = prix - 5;
+        } else {
+            prix = 0;
+        }
     }
 
     public void afficheCommande() {
         System.out.println("Prix total de la commande : " + this.prix + "€");
     }
+
 
 }
