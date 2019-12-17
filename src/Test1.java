@@ -94,7 +94,7 @@ public class Test1 {
                 l = sc.nextInt();
             }
             Plongee p = new Plongee(n, l);
-            //Rajouter tableau de présence
+            //Rajouter tableau de présence à l'hôtel
             p.Prix();
             c.setNote(c.getNote() + p.total());
         }
