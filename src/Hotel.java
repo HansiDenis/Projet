@@ -6,6 +6,7 @@ public class Hotel {
     private static int[] numChambre;
     private Client[] client;
     private Chambre[] chambres;
+    private boolean[] présence;
     private int nbSimple;
 
     public int getNbDouble() {
@@ -74,6 +75,7 @@ public class Hotel {
         for (int i = 0; i < nbSimple + nbDouble + nbTriple + nbDeluxe; i++) {
             disponibilite[i] = "libre";
             numChambre[i] = i + 1;
+            présence[i] = false;
         }
 
     }

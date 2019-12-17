@@ -78,7 +78,7 @@ public class Client {
     }
 
     public void affichage() {
-        System.out.println("Nom et prénom du client : " + this.nom + " " + this.prenom + "\ne-mail : " + this.email + "\nTélephone : " + this.telephone);
+        System.out.println("Nom et prénom du client : " + this.nom + " " + this.prenom + "\n e-mail : " + this.email + "\nTélephone : " + this.telephone);
     }
 
     public int getDuree() {

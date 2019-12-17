@@ -14,7 +14,7 @@ public class Test1 {
          System.out.println(casino.getGainpl());
          crHotel();
          partie(c);**/
-        plong(c);
+        CoInt(c);
     }
     private static Hotel crHotel() {
         Scanner sc = new Scanner(System.in);
@@ -100,8 +100,16 @@ public class Test1 {
         }
         System.out.println("Votre note de frais a bien été mise à jour");
     }
-/*
-    private static void CoInt(Client c) {
 
-    }*/
+    private static void CoInt(Client c) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Combien d'heures avez vous passé sur internet aujourd'hui.");
+        int t = sc.nextInt();
+        ConnexionInternet co = new ConnexionInternet(t);
+        System.out.println("La conexion internet est facturée 10euros de l'heure.Votre note de frais a été mise à jour.");
+        double p = co.getPrix();
+        c.setNote(c.getNote() + p);
+    }
+
+
 }

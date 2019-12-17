@@ -102,7 +102,7 @@ public class Casino {
                 }
             case "rouge":
                 if (gagne(n, "rouge")) {
-                    System.out.println("Vous avez gagné et avez doublé votre mise!");
+                    System.out.println("Vous avez gagné et avez doublé votre mise!!");
                     gainpl += valeur;
                     if (nbj >= 0) {
                         nbj += valeur;

@@ -25,7 +25,7 @@ public class Plongee {
 		double prixBapt = 80 * this.nbBapteme;
 		double prixCrois = 550 * this.nbCroisiere;
 		double tot = prixBapt + prixCrois;
-		System.out.println("Plongée sous-marine « Jardins de la Reine »\n\nNombre Baptême de plongée : " + this.nbBapteme + "x 80€ = " + prixBapt + " €\nNombre Croisière : " + this.nbCroisiere + " x 550€ = " + prixCrois + " €\n\nTotal de plongées à payer : " + tot + "€");
+		System.out.println("Plongée sous-marine « Jardins de la Reine »\n\n Nombre Baptême de plongée : " + this.nbBapteme + "x 80€ = " + prixBapt + " €\nNombre Croisière : " + this.nbCroisiere + " x 550€ = " + prixCrois + " €\n\nTotal de plongées à payer : " + tot + "€");
 
 	}
 
