@@ -8,16 +8,26 @@ public class Client {
     private int duree;
     private double note;
     private int tickets;
+    private int gains;
+    private int jetons;
 
-    public Client() {
-        this("non renseigné", "non renseigné", "non renseigné", "non renseigné", "non renseigné", "non renseigné", 0);
-    }
-
+    /**
+     * @param name
+     * @param firstName
+     * @param birth
+     * @param mail
+     * @param phone
+     * @param ind
+     * @param time
+     */
     //test validite naissance, email, tel
     public Client(String name, String firstName, String birth, String mail, String phone, String ind, int time) {
         nom = name;
         prenom = firstName;
         note = 0.0;
+        gains = 0;
+        jetons = 20;
+
         if (time >= 1) {
             duree = time;
         } else {
@@ -47,6 +57,26 @@ public class Client {
         }
     }
 
+    public Client() {
+        this("non renseigné", "non renseigné", "non renseigné", "non renseigné", "non renseigné", "non renseigné", 0);
+    }
+
+    public int getGains() {
+        return gains;
+    }
+
+    public void setGains(int gains) {
+        this.gains = gains;
+    }
+
+    public int getJetons() {
+        return jetons;
+    }
+
+    public void setJetons(int jetons) {
+        this.jetons = jetons;
+    }
+
     public void affichage() {
         System.out.println("Nom et prénom du client : " + this.nom + " " + this.prenom + "\ne-mail : " + this.email + "\nTélephone : " + this.telephone);
     }
@@ -54,6 +84,7 @@ public class Client {
     public int getDuree() {
         return duree;
     }
+
     public String getNom() {
         return this.nom;
     }

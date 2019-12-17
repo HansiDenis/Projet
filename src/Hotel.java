@@ -90,6 +90,10 @@ public class Hotel {
         }
     }
 
+    /**
+     * @param type
+     * @return
+     */
     //grand while avec c=[3 1] puis c=max(type)
     public int[] max(String type) {
         int max = 0;
@@ -118,11 +122,21 @@ public class Hotel {
         return res;
     }
 
+    /**
+     * *
+     *
+     * @param max
+     * @param c
+     * @param n
+     * @param type
+     * @return
+     */
     public int reservation(int max, Client c, int n, String type) { //n: nombre de personnes qu'a dit le client
         //Scanner sc = new Scanner(System.in);
 
         //System.out.println("Combien de personnes occuperont la chambre?");
         //int n = sc.nextInt();
+        int m = n - 1;
         if (n > max) {
             System.out.println("Vous ne pouvez pas être autant que ça dans cette chambre, veuillez réaliser une nouvelle réservation.");
             return 0;
@@ -140,6 +154,10 @@ public class Hotel {
         }
     }
 
+    /**
+     * @param type
+     * @return
+     */
     public int disponibilite(String type) {
         int b = 0;
         switch (type) {
@@ -196,6 +214,9 @@ public class Hotel {
         return b + 1;
     }
 
+    /**
+     * @param c
+     */
     public void ticket(Client c) {
         Date date = new Date();
         SimpleDateFormat formater = new SimpleDateFormat("d MMMM yyyy, H:m:s");

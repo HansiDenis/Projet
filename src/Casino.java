@@ -4,7 +4,17 @@ import java.util.Random;
 public class Casino {
     private static HashMap<Integer, String[]> Roulette = new HashMap<Integer, String[]>(37);
     private Client joueur;
+
+    public void setGainpl(int gainpl) {
+        this.gainpl = gainpl;
+    }
+
     private int gainpl = 0;
+
+    public void setNbj(int nbj) {
+        this.nbj = nbj;
+    }
+
     private int nbj = 20;
 
     public Casino(Client c) {
@@ -52,7 +62,9 @@ public class Casino {
                 if (gagne(n, "pair")) {
                     System.out.println("Vous avez gagné et avez doublé votre mise!");
                     gainpl += valeur;
-                    nbj += valeur;
+                    if (nbj >= 0) {
+                        nbj += valeur;
+                    }
                     break;
                 } else {
                     System.out.println("Aïe!C'est loupé dommage...Vous aurez plus de chance la prochaine fois!");
@@ -64,7 +76,9 @@ public class Casino {
                 if (gagne(n, "impair")) {
                     System.out.println("Vous avez gagné et avez doublé votre mise!");
                     gainpl += valeur;
-                    nbj += valeur;
+                    if (nbj >= 0) {
+                        nbj += valeur;
+                    }
                     break;
                 } else {
                     System.out.println("Aïe!C'est loupé dommage...Vous aurez plus de chance la prochaine fois!");
@@ -76,7 +90,9 @@ public class Casino {
                 if (gagne(n, "noir")) {
                     System.out.println("Vous avez gagné et avez doublé votre mise!");
                     gainpl += valeur;
-                    nbj += valeur;
+                    if (nbj >= 0) {
+                        nbj += valeur;
+                    }
                     break;
                 } else {
                     System.out.println("Aïe!C'est loupé dommage...Vous aurez plus de chance la prochaine fois!");
@@ -88,7 +104,9 @@ public class Casino {
                 if (gagne(n, "rouge")) {
                     System.out.println("Vous avez gagné et avez doublé votre mise!");
                     gainpl += valeur;
-                    nbj += valeur;
+                    if (nbj >= 0) {
+                        nbj += valeur;
+                    }
                     break;
                 } else {
                     System.out.println("Aïe!C'est loupé dommage...Vous aurez plus de chance la prochaine fois!");
@@ -100,7 +118,9 @@ public class Casino {
                 if (gagne(n, "manque")) {
                     System.out.println("Vous avez gagné et avez doublé votre mise!");
                     gainpl += valeur;
-                    nbj += valeur;
+                    if (nbj >= 0) {
+                        nbj += valeur;
+                    }
                     break;
                 } else {
                     System.out.println("Aïe!C'est loupé dommage...Vous aurez plus de chance la prochaine fois!");
@@ -112,7 +132,9 @@ public class Casino {
                 if (gagne(n, "passe")) {
                     System.out.println("Vous avez gagné et avez doublé votre mise!");
                     gainpl += valeur;
-                    nbj += valeur;
+                    if (nbj >= 0) {
+                        nbj += valeur;
+                    }
                     break;
                 } else {
                     System.out.println("Aïe!C'est loupé dommage...Vous aurez plus de chance la prochaine fois!");
@@ -123,8 +145,10 @@ public class Casino {
             case "zéro":
                 if (gagne(n, "zéro")) {
                     System.out.println("Vous avez gagné et avez multiplié votre mise par 35 !");
-                    gainpl += valeur;
-                    nbj += valeur;
+                    gainpl += 34 * valeur;
+                    if (nbj >= 0) {
+                        nbj += valeur;
+                    }
                     break;
                 } else {
                     System.out.println("Aïe!C'est loupé dommage...Vous aurez plus de chance la prochaine fois!");
