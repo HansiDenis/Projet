@@ -1,6 +1,7 @@
 public class Chambre {
     private String type;
 
+
     public Chambre() {
         this(null);
     }

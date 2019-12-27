@@ -29,6 +29,7 @@ public class Plongee {
 
 	}
 
+
 	public double total() {
 
 		double prixBapt = 80 * this.nbBapteme;

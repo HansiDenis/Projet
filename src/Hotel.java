@@ -80,6 +80,11 @@ public class Hotel {
 
     }
 
+    public Client[] getClient() {
+        return client;
+    }
+
+
     public void affichage() {
         for (int i = 0; i < 40; i++) {
             String c = "";

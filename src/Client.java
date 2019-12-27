@@ -11,6 +11,7 @@ public class Client {
     private int gains;
     private int jetons;
 
+
     public void setDateNaissance(String dateNaissance) {
         this.dateNaissance = dateNaissance;
     }

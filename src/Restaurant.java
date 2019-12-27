@@ -5,6 +5,7 @@ public class Restaurant {
 
     public Restaurant() {
 
+
     }
 
     public void afficheCarte() {

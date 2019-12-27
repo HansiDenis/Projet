@@ -162,56 +162,26 @@ public class Casino {
     }
 
     public int getNbj() {
-        if (nbj > 0) {
-            return nbj;
-        } else return 0;
+        return Math.max(nbj, 0);
     }
 
     public boolean gagne(int n, String mise) {
         System.out.println("Rien ne va plus!");
         switch (mise) {
             case "pair":
-                if (Roulette.get(n)[0].equals("pair")) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return Roulette.get(n)[0].equals("pair");
             case "impair":
-                if (Roulette.get(n)[0].equals("impair")) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return Roulette.get(n)[0].equals("impair");
             case "noir":
-                if (Roulette.get(n)[1].equals("noir")) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return Roulette.get(n)[1].equals("noir");
             case "rouge":
-                if (Roulette.get(n)[1].equals("rouge")) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return Roulette.get(n)[1].equals("rouge");
             case "manque":
-                if (n <= 18) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return n <= 18;
             case "passe":
-                if (n >= 19) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return n >= 19;
             case "zéro":
-                if (n == 0) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return n == 0;
             default:
                 return false;
         }
@@ -220,8 +190,7 @@ public class Casino {
     public int roule() {
         Random r = new Random();
         int n = r.nextInt(38) - 1;
-        if (n >= 0) return n;
-        else return 0;
+        return Math.max(n, 0);
     }
 
 }
