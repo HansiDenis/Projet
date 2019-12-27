@@ -31,6 +31,7 @@ public class Test {
         System.out.println(max.getAsInt());
 
     }
+
     private static Hotel crHotel() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Nous allons créer votre hôtel");
