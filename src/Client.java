@@ -32,7 +32,7 @@ public class Client {
         gains = 0;
         jetons = 20;
 
-        if (time >= 1) {
+        if (time >= 0) {
             duree = time;
         } else {
             System.out.println("Durée renseignée incorrecte");
@@ -59,10 +59,19 @@ public class Client {
         } else {
             System.out.println("Numéro de téléphone invalide M(Mme) : " + this.nom);
         }
+        tickets = duree;
     }
 
     public Client() {
-        this("non renseigné", "non renseigné", "non renseigné", "non renseigné", "non renseigné", "non renseigné", 0);
+        this("non renseigné", "renseigné", "01/01/1000", "non@f.df", "0000000000", "", 0);
+    }
+
+    public void setDuree(int duree) {
+        if (duree <= 0) {
+            this.duree = 0;
+        } else {
+            this.duree = duree;
+        }
     }
 
     public int getGains() {

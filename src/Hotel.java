@@ -6,7 +6,6 @@ public class Hotel {
     private static int[] numChambre;
     private Client[] client;
     private Chambre[] chambres;
-    private boolean[] présence;
     private int nbSimple;
 
     public int getNbDouble() {
@@ -75,9 +74,31 @@ public class Hotel {
         for (int i = 0; i < nbSimple + nbDouble + nbTriple + nbDeluxe; i++) {
             disponibilite[i] = "libre";
             numChambre[i] = i + 1;
-            présence[i] = false;
+            client[i] = new Client();
         }
 
+    }
+
+    //grand while avec c=[3 1] puis c=max(type)
+    public int[] max(String type) {
+        //while(b){
+        //System.out.println("Quel type de chambre voulez-vous réserver ?(simple/double/triple/deluxe)");
+        switch (type) {
+            case "simple":
+                int[] res = {1, 1};
+                return res;
+            case "double":
+            case "deluxe":
+                int[] res1 = {2, 1};
+                return res1;
+            case "triple":
+                int[] res2 = {3, 1};
+                return res2;
+            default:
+                System.out.println("Mauvais type de chambre renseigné");
+                int[] res4 = {0, 0};
+                return res4;
+        }
     }
 
     public void affichage() {
@@ -92,53 +113,15 @@ public class Hotel {
         }
     }
 
-    /**
-     * @param type
-     * @return
-     */
-    //grand while avec c=[3 1] puis c=max(type)
-    public int[] max(String type) {
-        int max = 0;
-        int b = 1;
-        int[] res = {max, b};
-        //while(b){
-        //System.out.println("Quel type de chambre voulez-vous réserver ?(simple/double/triple/deluxe)");
-        switch (type) {
-            case "simple":
-                max = 1;
-                break;
-            case "double":
-                max = 2;
-                break;
-            case "triple":
-                max = 3;
-                break;
-            case "deluxe":
-                max = 2;
-                break;
-            default:
-                System.out.println("Mauvais type de chambre renseigné");
-                b = 0;
-                break;
-        }
-        return res;
+    public Client[] getClient() {
+        return client;
     }
 
-    /**
-     * *
-     *
-     * @param max
-     * @param c
-     * @param n
-     * @param type
-     * @return
-     */
     public int reservation(int max, Client c, int n, String type) { //n: nombre de personnes qu'a dit le client
         //Scanner sc = new Scanner(System.in);
 
         //System.out.println("Combien de personnes occuperont la chambre?");
         //int n = sc.nextInt();
-        int m = n - 1;
         if (n > max) {
             System.out.println("Vous ne pouvez pas être autant que ça dans cette chambre, veuillez réaliser une nouvelle réservation.");
             return 0;
@@ -156,10 +139,6 @@ public class Hotel {
         }
     }
 
-    /**
-     * @param type
-     * @return
-     */
     public int disponibilite(String type) {
         int b = 0;
         switch (type) {
@@ -216,9 +195,6 @@ public class Hotel {
         return b + 1;
     }
 
-    /**
-     * @param c
-     */
     public void ticket(Client c) {
         Date date = new Date();
         SimpleDateFormat formater = new SimpleDateFormat("d MMMM yyyy, H:m:s");
@@ -234,5 +210,7 @@ public class Hotel {
         System.out.println("Chambre n°: " + numChambre + "       Type de chambre : " + type);
     }
 
-
+    public void setClient(Client[] client) {
+        this.client = client;
+    }
 }
