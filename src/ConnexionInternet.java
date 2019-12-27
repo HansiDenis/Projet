@@ -3,6 +3,7 @@ public class ConnexionInternet {
     private int heures;
     private int prix;
 
+
     public ConnexionInternet() {
         this(0);
     }

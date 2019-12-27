@@ -12,8 +12,8 @@ public class Test1 {
          casino.create();
          casino.miser("pair", 20);
          System.out.println(casino.getGainpl());
-         crHotel();
-         partie(c);**/
+         crHotel();**/
+        partie(c);
         CoInt(c);
     }
     private static Hotel crHotel() {

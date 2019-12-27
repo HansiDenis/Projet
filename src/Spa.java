@@ -1,5 +1,6 @@
 public class Spa {
 
+
     public double prix;
     private int Relaxant;
     private int PierresChaudes;
