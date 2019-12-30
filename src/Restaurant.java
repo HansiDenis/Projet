@@ -9,6 +9,6 @@ public class Restaurant {
     }
 
     public void afficheCarte() {
-        System.out.println(this.carte);
+        System.out.println(carte);
     }
 }

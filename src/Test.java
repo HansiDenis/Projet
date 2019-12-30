@@ -1,34 +1,11 @@
-import java.util.Objects;
-import java.util.Optional;
-import java.util.OptionalInt;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
 public class Test {
 
     public static void main(String[] args) {
+        Sejour();
 
-
-        Client c = new Client("Maltese", "Salomé", "10/03/2000", "salome.maltes@gmail.com", "0619310708", "+33", 4);
-        /**Hotel h = new Hotel();
-         h.reservation(1, c, 1, "double");
-         h.ticket(c);
-         h.affichage();
-         //Casino casino = new Casino(c);
-         //casino.create();
-         //casino.miser("pair", 20);
-         //doySystem.out.println(casino.getGainpl());
-
-
-         Hotel h = new Hotel();
-         h.reservation(1, c, 1, "double");
-         h.ticket(c);
-
-         Hotel h = crHotel();
-         day(h);**/
-        int[] p = {1, 7, 9, 0, 12};
-        OptionalInt max = IntStream.of(p).max();
-        System.out.println(max.getAsInt());
 
     }
 
@@ -94,7 +71,7 @@ public class Test {
     private static void Casino(Hotel h) {
         Client[] c = h.getClient();
         for (Client i : c) {
-            if (!i.getNom().equals("non renseigné")) {
+            if (!i.getNom().equals("non renseigné") && i.getPresence()) {
                 Scanner sc = new Scanner(System.in);
                 System.out.println("Bienvenue devant le  casino " + i.getNom());
                 System.out.println("Voulez-vous entrer dans le casino ? (oui/non)");
@@ -108,12 +85,9 @@ public class Test {
     }
 
     private static void plong(Client c) {
-        System.out.println("Souhaitez vous profiter de l'activité de plongée?(o/n)");
         Scanner sc = new Scanner(System.in);
-        String rep = sc.nextLine();
-        int l = 0;
+        int l;
         Plongee def = new Plongee();
-        if (rep.equals("o")) {
             def.affichageTarifs();
             System.out.println("Combien de baptêmes souhaitez vous?");
             int n = sc.nextInt();
@@ -121,21 +95,24 @@ public class Test {
                 System.out.println("Votre temps de séjour n'est pas assez long pour participer à la croisière");
                 l = 0;
             } else {
-                System.out.println("Combien de croisières voulez vous effectuer?");
+                System.out.println("Combien de croisières voulez vous effectuer? Si vous en choisissez vous partirez sur le champ");
                 l = sc.nextInt();
+                if (l > 0) {
+                    c.setPresence(false);
+                }
             }
             Plongee p = new Plongee(n, l);
             //Rajouter tableau de présence à l'hôtel
             p.Prix();
             c.setNote(c.getNote() + p.total());
-        }
+
         System.out.println("Votre note de frais a bien été mise à jour");
     }
 
     private static void Plongee(Hotel h) {
         Client[] c = h.getClient();
         for (Client i : c) {
-            if (!i.getNom().equals("non renseigné")) {
+            if (!i.getNom().equals("non renseigné") && i.getPresence()) {
                 Scanner sc = new Scanner(System.in);
                 System.out.println("Bienvenue au site de plongée " + i.getNom());
                 System.out.println("Voulez-vous faire un baptême de plongée ou une croisière ? (oui/non)");
@@ -151,7 +128,7 @@ public class Test {
     private static void wifi(Hotel h) {
         Client[] c = h.getClient();
         for (Client i : c) {
-            if (!i.getNom().equals("non renseigné")) {
+            if (!i.getNom().equals("non renseigné") && i.getPresence()) {
                 Scanner sc = new Scanner(System.in);
                 System.out.println("Bienvenue au site de règlement de l'utilisation d'Internet " + i.getNom());
                 System.out.println("Avez-vous utilisé Internet aujourd'hui ? (oui/non)");
@@ -212,8 +189,7 @@ public class Test {
             tab = h.max(type);
         }
         String max = tab[0] + "";
-        String res[] = {max, type};
-        return res;
+        return new String[]{max, type};
     }
 
     private static void Reservation(Hotel h, Client c) {
@@ -270,21 +246,9 @@ public class Test {
                 if (rep2.equals("o")) {
                     System.out.println("Voulez-vous une entrée ? Un accompagnement ? Un dessert ? (o/n o/n o/n)");
                     String supplement = sc.nextLine();
-                    if (Character.toString(supplement.charAt(0)).equals("o")) {
-                        entree = true;
-                    } else {
-                        entree = false;
-                    }
-                    if (Character.toString(supplement.charAt(2)).equals("o")) {
-                        accompagnement = true;
-                    } else {
-                        accompagnement = false;
-                    }
-                    if (Character.toString(supplement.charAt(4)).equals("o")) {
-                        dessert = true;
-                    } else {
-                        dessert = false;
-                    }
+                    entree = Character.toString(supplement.charAt(0)).equals("o");
+                    accompagnement = Character.toString(supplement.charAt(2)).equals("o");
+                    dessert = Character.toString(supplement.charAt(4)).equals("o");
                     prix += com.addMojito(entree, accompagnement, dessert);
                     c.setNote(note + prix);
                     com.afficheCommande();
@@ -299,16 +263,8 @@ public class Test {
                 if (rep3.equals("o")) {
                     System.out.println("Voulez-vous une entrée ? Un dessert ? (o/n o/n)");
                     String supplement2 = sc.nextLine();
-                    if (Character.toString(supplement2.charAt(0)).equals("o")) {
-                        entree = true;
-                    } else {
-                        entree = false;
-                    }
-                    if (Character.toString(supplement2.charAt(2)).equals("o")) {
-                        dessert = true;
-                    } else {
-                        dessert = false;
-                    }
+                    entree = Character.toString(supplement2.charAt(0)).equals("o");
+                    dessert = Character.toString(supplement2.charAt(2)).equals("o");
                     prix += com.addDaiquiri(entree, dessert);
                     c.setNote(note + prix);
                     com.afficheCommande();
@@ -320,31 +276,11 @@ public class Test {
         } else if (rep.equals("carte")) {
             System.out.println("Voulez-vous une entrée ? Un plat ? Un accompagnement ? Un dessert ? Une boisson ? (o/n o/n o/n o/n o/n)");
             String carte = sc.nextLine();
-            if (Character.toString(carte.charAt(0)).equals("o")) {
-                entree = true;
-            } else {
-                entree = false;
-            }
-            if (Character.toString(carte.charAt(2)).equals("o")) {
-                plat = true;
-            } else {
-                plat = false;
-            }
-            if (Character.toString(carte.charAt(4)).equals("o")) {
-                accompagnement = true;
-            } else {
-                accompagnement = false;
-            }
-            if (Character.toString(carte.charAt(6)).equals("o")) {
-                dessert = true;
-            } else {
-                dessert = false;
-            }
-            if (Character.toString(carte.charAt(8)).equals("o")) {
-                boisson = true;
-            } else {
-                boisson = false;
-            }
+            entree = Character.toString(carte.charAt(0)).equals("o");
+            plat = Character.toString(carte.charAt(2)).equals("o");
+            accompagnement = Character.toString(carte.charAt(4)).equals("o");
+            dessert = Character.toString(carte.charAt(6)).equals("o");
+            boisson = Character.toString(carte.charAt(8)).equals("o");
             prix = com.commandeCarte(entree, plat, accompagnement, dessert, boisson);
         } else {
             System.out.println("Nous n'avons pas compris votre commande. Veuillez recommencer s'il vous plait.");
@@ -358,18 +294,17 @@ public class Test {
             c.setNote(note + prix);
             c.setTickets();
             System.out.println("Votre note a été mise à jour. Votre nombre de tickets aussi. Il vous reste " + c.getTickets() + " tickets.");
-            com.afficheCommande();
         } else {
             c.setNote(note + prix);
-            com.afficheCommande();
         }
+        com.afficheCommande();
 
     }
 
     private static void Restau(Hotel h) {
         Client[] c = h.getClient();
         for (Client i : c) {
-            if (!i.getNom().equals("non renseigné")) {
+            if (!i.getNom().equals("non renseigné") && i.getPresence()) {
                 Scanner sc = new Scanner(System.in);
                 System.out.println("Bienvenue au restaurant " + i.getNom());
                 System.out.println("Voulez-vous commander quelque chose ? (oui/non)");
@@ -399,7 +334,7 @@ public class Test {
     private static void Spa(Hotel h) {
         Client[] c = h.getClient();
         for (Client i : c) {
-            if (!i.getNom().equals("non renseigné")) {
+            if (!i.getNom().equals("non renseigné") && i.getPresence()) {
                 double tot = 0;
                 Scanner sc = new Scanner(System.in);
                 System.out.println("Bienvenue au Spa " + i.getNom());
@@ -422,6 +357,12 @@ public class Test {
         Plongee(h);
         Casino(h);
         wifi(h);
+        Client[] c = h.getClient();
+        for (Client i : c) {
+            if (!i.getPresence()) {
+                i.setAbroad(i.getAbroad() + 1);
+            }
+        }
     }
 
     private static void Sejour() {
@@ -434,9 +375,13 @@ public class Test {
             for (int i = 0; i < 40; i++) {
                 c[i].setDuree(c[i].getDuree() - 1);
                 durees[i] = c[i].getDuree();
+                if (c[i].getDuree() == 0) {
+                    h.videchambre(i);
+                }
             }
             h.setClient(c);
             max = IntStream.of(durees).max().getAsInt();
+            h.affichage();
         }
 
     }

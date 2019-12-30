@@ -10,11 +10,8 @@ public class Client {
     private int tickets;
     private int gains;
     private int jetons;
-
-
-    public void setDateNaissance(String dateNaissance) {
-        this.dateNaissance = dateNaissance;
-    }
+    private boolean presence = true;
+    private int abroad = 0;
 
     /**
      * @param name
@@ -45,7 +42,7 @@ public class Client {
             System.out.println("Date de naissance invalide M(Mme): " + this.nom);
         }
 
-        if ((mail.indexOf('.', mail.indexOf("@")) != -1) && (mail.indexOf("@") != -1)) {
+        if ((mail.indexOf('.', mail.indexOf("@")) != -1) && (mail.contains("@"))) {
             email = mail;
         } else {
             System.out.println("Adresse e-mail invalide M(Mme) : " + this.nom);
@@ -63,16 +60,33 @@ public class Client {
         tickets = duree;
     }
 
+    public boolean getPresence() {
+        return presence;
+    }
+
+    public void setPresence(boolean presence) {
+        this.presence = presence;
+    }
+
     public Client() {
         this("non renseigné", "renseigné", "01/01/1000", "non@f.df", "0000000000", "", 0);
     }
 
-    public void setDuree(int duree) {
-        if (duree <= 0) {
-            this.duree = 0;
+    public int getAbroad() {
+        return abroad;
+    }
+
+    public void setAbroad(int abroad) {
+        if (abroad > 9) {
+            this.abroad = 0;
+            this.setPresence(true);
         } else {
-            this.duree = duree;
+            this.abroad = abroad;
         }
+    }
+
+    public void setDuree(int duree) {
+        this.duree = Math.max(duree, 0);
     }
 
     public int getGains() {
@@ -103,41 +117,22 @@ public class Client {
         return this.nom;
     }
 
-    public void setNom(String n) {
-        this.nom = n;
-    }
 
-    public String getPrenom() {
-        return this.prenom;
-    }
-
-    public void setPrenom(String p) {
-        this.prenom = p;
-    }
 
     public String getNaissance() {
         return this.dateNaissance;
     }
 
-    public void setNaissance(String date) {
-        this.dateNaissance = date;
-    }
 
     public String getEmail() {
         return this.email;
     }
 
-    public void setEmail(String e) {
-        this.email = e;
-    }
 
     public String getTel() {
         return this.telephone;
     }
 
-    public void setTel(String numero) {
-        this.telephone = numero;
-    }
 
     public int getTickets() {
         return tickets;
