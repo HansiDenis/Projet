@@ -14,13 +14,13 @@ public class Client {
     private int abroad = 0;
 
     /**
-     * @param name
-     * @param firstName
-     * @param birth
-     * @param mail
-     * @param phone
-     * @param ind
-     * @param time
+     * @param name      le nom de famille du client
+     * @param firstName le prénom du client
+     * @param birth     la date de naissance du client
+     * @param mail      l'adresse e-mail du client
+     * @param phone     le numéro de téléphone du client
+     * @param ind       l'indice téléphonique du client
+     * @param time      la durée du séjour du client
      */
     //test validite naissance, email, tel
     public Client(String name, String firstName, String birth, String mail, String phone, String ind, int time) {

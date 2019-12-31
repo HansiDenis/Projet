@@ -95,6 +95,10 @@ public class Test {
                 System.out.println("Votre temps de séjour n'est pas assez long pour participer à la croisière");
                 l = 0;
             } else {
+                if (c.getDuree() == 10) {
+                    System.out.println("Attention!Il ne vous reste plus que 10 jours de séjour, c'est votre dernière chance de " +
+                            "profiter de la croisière.");
+                }
                 System.out.println("Combien de croisières voulez vous effectuer? Si vous en choisissez vous partirez sur le champ");
                 l = sc.nextInt();
                 if (l > 0) {
@@ -352,11 +356,17 @@ public class Test {
 
     private static void day(Hotel h) {
         Reception(h);
+        System.out.println("\n");
         Spa(h);
+        System.out.println("\n");
         Restau(h);
+        System.out.println("\n");
         Plongee(h);
+        System.out.println("\n");
         Casino(h);
+        System.out.println("\n");
         wifi(h);
+        System.out.println("\n");
         Client[] c = h.getClient();
         for (Client i : c) {
             if (!i.getPresence()) {
@@ -368,7 +378,9 @@ public class Test {
     private static void Sejour() {
         Hotel h = crHotel();
         int max = 1;
+        int day = 1;
         while (max > 0) {
+            System.out.println("--------------------------DAY " + day + "-----------------------");
             day(h);
             Client[] c = h.getClient();
             int[] durees = new int[c.length];
@@ -382,6 +394,7 @@ public class Test {
             h.setClient(c);
             max = IntStream.of(durees).max().getAsInt();
             h.affichage();
+            System.out.println("\n\n");
         }
 
     }
