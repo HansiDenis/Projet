@@ -50,7 +50,7 @@ public class Test {
     }
 
     private static void partie(Client c) {
-        Casino cas = new Casino(c);
+        Casino cas = new Casino();
         cas.create();
         cas.setGainpl(c.getGains());
         cas.setNbj(c.getJetons());
@@ -74,9 +74,9 @@ public class Test {
             if (!i.getNom().equals("non renseigné") && i.getPresence()) {
                 Scanner sc = new Scanner(System.in);
                 System.out.println("Bienvenue devant le  casino " + i.getNom());
-                System.out.println("Voulez-vous entrer dans le casino ? (oui/non)");
+                System.out.println("Voulez-vous entrer dans le casino ? (o/n)");
                 String rep = sc.nextLine();
-                if (rep.equals("oui")) {
+                if (rep.equals("o")) {
                     partie(i);
                 }
 
@@ -119,9 +119,9 @@ public class Test {
             if (!i.getNom().equals("non renseigné") && i.getPresence()) {
                 Scanner sc = new Scanner(System.in);
                 System.out.println("Bienvenue au site de plongée " + i.getNom());
-                System.out.println("Voulez-vous faire un baptême de plongée ou une croisière ? (oui/non)");
+                System.out.println("Voulez-vous faire un baptême de plongée ou une croisière ? (o/n)");
                 String rep = sc.nextLine();
-                if (rep.equals("oui")) {
+                if (rep.equals("o")) {
                     plong(i);
                 }
 
@@ -135,9 +135,9 @@ public class Test {
             if (!i.getNom().equals("non renseigné") && i.getPresence()) {
                 Scanner sc = new Scanner(System.in);
                 System.out.println("Bienvenue au site de règlement de l'utilisation d'Internet " + i.getNom());
-                System.out.println("Avez-vous utilisé Internet aujourd'hui ? (oui/non)");
+                System.out.println("Avez-vous utilisé Internet aujourd'hui ? (o/n)");
                 String rep = sc.nextLine();
-                if (rep.equals("oui")) {
+                if (rep.equals("o")) {
                     CoInt(i);
                 }
 
@@ -201,6 +201,8 @@ public class Test {
         String[] tab = choixType(h);
         int max = Integer.parseInt(tab[0]);
         String type = tab[1];
+        System.out.println("Les chambres simples acceuillent au maximum 1 pers,les chambres doubles et deluxes 2 "
+                + "et les triples 3");
         System.out.println("Combien de personnes occuperont la chambre?");
         int n = sc.nextInt();
         while (h.reservation(max, c, n, type) == 0) {
@@ -213,17 +215,16 @@ public class Test {
         Chambre chambre = new Chambre(type);
         System.out.println("Votre réservation est faite.");
         h.ticket(c);
-        c.setNote(chambre.Prix());
     }
 
     private static void Reception(Hotel h) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Y-a-t-il un nouveau client ? (oui/non)");
+        System.out.println("Y-a-t-il un nouveau client ? (o/n)");
         String rep = sc.nextLine();
-        while (rep.equals("oui")) {
+        while (rep.equals("o")) {
             Client c = Enregistrement();
             Reservation(h, c);
-            System.out.println("Y-a-t-il un nouveau client ? (oui/non)");
+            System.out.println("Y-a-t-il un nouveau client ? (o/n)");
             rep = sc.nextLine();
         }
     }
@@ -248,11 +249,15 @@ public class Test {
                 System.out.println("Voulez-vous autre chose ? (o/n) ");
                 String rep2 = sc.nextLine();
                 if (rep2.equals("o")) {
-                    System.out.println("Voulez-vous une entrée ? Un accompagnement ? Un dessert ? (o/n o/n o/n)");
-                    String supplement = sc.nextLine();
-                    entree = Character.toString(supplement.charAt(0)).equals("o");
-                    accompagnement = Character.toString(supplement.charAt(2)).equals("o");
-                    dessert = Character.toString(supplement.charAt(4)).equals("o");
+                    System.out.println("Voulez-vous ajouter une entrée ? (o/n)");
+                    String rep21 = sc.nextLine();
+                    System.out.println("Voulez-vous ajouter un accompagnement ? (o/n)");
+                    String rep22 = sc.nextLine();
+                    System.out.println("Voulez-vous ajouter un desert ? (o/n)");
+                    String rep23 = sc.nextLine();
+                    entree = rep21.equals("o");
+                    accompagnement = rep22.equals("o");
+                    dessert = rep23.equals("o");
                     prix += com.addMojito(entree, accompagnement, dessert);
                     c.setNote(note + prix);
                     com.afficheCommande();
@@ -265,10 +270,12 @@ public class Test {
                 System.out.println("Voulez-vous autre chose ? (o/n) ");
                 String rep3 = sc.nextLine();
                 if (rep3.equals("o")) {
-                    System.out.println("Voulez-vous une entrée ? Un dessert ? (o/n o/n)");
-                    String supplement2 = sc.nextLine();
-                    entree = Character.toString(supplement2.charAt(0)).equals("o");
-                    dessert = Character.toString(supplement2.charAt(2)).equals("o");
+                    System.out.println("Voulez-vous ajouter une entrée ? (o/n)");
+                    String rep31 = sc.nextLine();
+                    System.out.println("Voulez-vous ajouter un dessert ? (o/n)");
+                    String rep32 = sc.nextLine();
+                    entree = rep31.equals("o");
+                    dessert = rep32.equals("o");
                     prix += com.addDaiquiri(entree, dessert);
                     c.setNote(note + prix);
                     com.afficheCommande();
@@ -278,13 +285,21 @@ public class Test {
                 }
             }
         } else if (rep.equals("carte")) {
-            System.out.println("Voulez-vous une entrée ? Un plat ? Un accompagnement ? Un dessert ? Une boisson ? (o/n o/n o/n o/n o/n)");
-            String carte = sc.nextLine();
-            entree = Character.toString(carte.charAt(0)).equals("o");
-            plat = Character.toString(carte.charAt(2)).equals("o");
-            accompagnement = Character.toString(carte.charAt(4)).equals("o");
-            dessert = Character.toString(carte.charAt(6)).equals("o");
-            boisson = Character.toString(carte.charAt(8)).equals("o");
+            System.out.println("Voulez-vous une entrée ? (o/n)");
+            String rep41 = sc.nextLine();
+            System.out.println("Voulez-vous un plat ? (o/n)");
+            String rep42 = sc.nextLine();
+            System.out.println("Voulez-vous un accompagnement ? (o/n)");
+            String rep43 = sc.nextLine();
+            System.out.println("Voulez-vous un dessert ? (o/n)");
+            String rep44 = sc.nextLine();
+            System.out.println("Voulez-vous une boisson ? (o/n)");
+            String rep45 = sc.nextLine();
+            entree = rep41.equals("o");
+            plat = rep42.equals("o");
+            accompagnement = rep43.equals("o");
+            dessert = rep44.equals("o");
+            boisson = rep45.equals("o");
             prix = com.commandeCarte(entree, plat, accompagnement, dessert, boisson);
         } else {
             System.out.println("Nous n'avons pas compris votre commande. Veuillez recommencer s'il vous plait.");
@@ -307,15 +322,18 @@ public class Test {
 
     private static void Restau(Hotel h) {
         Client[] c = h.getClient();
+        Restaurant r = h.getResto();
+        System.out.println("Le restaurant ouvre ses portes, voici sa carte : \n\n");
+        r.afficheCarte();
         for (Client i : c) {
             if (!i.getNom().equals("non renseigné") && i.getPresence()) {
                 Scanner sc = new Scanner(System.in);
                 System.out.println("Bienvenue au restaurant " + i.getNom());
-                System.out.println("Voulez-vous commander quelque chose ? (oui/non)");
+                System.out.println("Voulez-vous commander quelque chose ? (o/n)");
                 String rep = sc.nextLine();
-                while (rep.equals("oui")) {
+                while (rep.equals("o")) {
                     commandeRestau(i);
-                    System.out.println("Voulez-vous commander autre chose ? (oui/non)");
+                    System.out.println("Voulez-vous commander autre chose ? (o/n)");
                     rep = sc.nextLine();
                 }
 
@@ -342,11 +360,11 @@ public class Test {
                 double tot = 0;
                 Scanner sc = new Scanner(System.in);
                 System.out.println("Bienvenue au Spa " + i.getNom());
-                System.out.println("Voulez-vous un massage ? (oui/non)");
+                System.out.println("Voulez-vous un massage ? (o/n)");
                 String rep = sc.nextLine();
-                while (rep.equals("oui")) {
+                while (rep.equals("o")) {
                     tot += Massage(i);
-                    System.out.println("Voulez-vous autre massage ? (oui/non)");
+                    System.out.println("Voulez-vous autre massage ? (o/n)");
                     rep = sc.nextLine();
                 }
                 System.out.println("Coût total : " + tot + " euros");
@@ -354,8 +372,23 @@ public class Test {
         }
     }
 
+    private static void payrooms(Hotel h) {
+        Chambre[] rooms = h.getChambres();
+        Client[] c = h.getClient();
+        for (int i = 0; i < 40; i++) {
+            if (!c[i].getNom().equals("non renseigné")) {
+                c[i].setNote(c[i].getNote() + rooms[i].Prix());
+                System.out.println("La note de M(me) " + c[i].getNom() + " a été incrémentée de "
+                        + rooms[i].Prix() + " pour la location de sa chambre");
+            }
+        }
+
+    }
+
     private static void day(Hotel h) {
         Reception(h);
+        System.out.println("\n");
+        payrooms(h);
         System.out.println("\n");
         Spa(h);
         System.out.println("\n");
@@ -379,6 +412,7 @@ public class Test {
         Hotel h = crHotel();
         int max = 1;
         int day = 1;
+        double recette = 0.0;
         while (max > 0) {
             System.out.println("--------------------------DAY " + day + "-----------------------");
             day(h);
@@ -387,15 +421,24 @@ public class Test {
             for (int i = 0; i < 40; i++) {
                 c[i].setDuree(c[i].getDuree() - 1);
                 durees[i] = c[i].getDuree();
-                if (c[i].getDuree() == 0) {
+                if (c[i].getDuree() == 0 && !c[i].getNom().equals("non renseigné")) {
+                    System.out.println("Merci de nous avoir fait confiance, votre séjour touche à sa fin M(me)" + c[i].getNom()
+                            + "nous espérons vous revoir bientôt\n");
+                    c[i].setNote(c[i].getNote() - c[i].getGains());
+                    System.out.println("Votre note totale s'éleve à : " + c[i].getNote() + " euros.");
+                    recette += c[i].getNote();
                     h.videchambre(i);
                 }
             }
             h.setClient(c);
             max = IntStream.of(durees).max().getAsInt();
+            System.out.println("Voici l'état de disponibilité des chambres à la fin de cette journée:\n ");
             h.affichage();
             System.out.println("\n\n");
+            day += 1;
         }
+        System.out.println("Le dernier client quitte l'hôtel,celui-ci ferme donc ses portes." +
+                "La recette totale de l'hôtel pour cette saison est de : " + recette);
 
     }
 }

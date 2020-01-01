@@ -3,7 +3,7 @@ import java.util.Random;
 
 
 public class Casino {
-    private static HashMap<Integer, String[]> Roulette = new HashMap<Integer, String[]>(37);
+    private static HashMap<Integer, String[]> Roulette = new HashMap<>(37);
 
     public void setGainpl(int gainpl) {
         this.gainpl = gainpl;
@@ -16,7 +16,7 @@ public class Casino {
 
     private int nbj = 20;
 
-    public Casino(Client c) {
+    public Casino() {
     }
 
     public void create() {
@@ -54,7 +54,7 @@ public class Casino {
 
     public void miser(String mise, int valeur) {
         int n = roule();
-        System.out.println(n);
+        System.out.println(n + "--->" + Roulette.get(n)[1]);
         switch (mise) {
             case "pair":
                 if (gagne(n, "pair")) {

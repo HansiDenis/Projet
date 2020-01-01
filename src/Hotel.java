@@ -7,6 +7,7 @@ public class Hotel {
     private Client[] client;
     private Chambre[] chambres;
     private int nbSimple;
+    private Restaurant resto;
 
     public int getNbDouble() {
         return nbDouble;
@@ -58,12 +59,16 @@ public class Hotel {
             client[i] = new Client();
 
         }
-
+        this.resto = new Restaurant();
     }
 
     public void videchambre(int num) {
         this.disponibilite[num] = "libre";
         this.client[num] = new Client();
+    }
+
+    public Restaurant getResto() {
+        return resto;
     }
 
     //grand while avec c=[3 1] puis c=max(type)
@@ -99,6 +104,10 @@ public class Hotel {
 
     public Client[] getClient() {
         return client;
+    }
+
+    public Chambre[] getChambres() {
+        return chambres;
     }
 
     public int reservation(int max, Client c, int n, String type) { //n: nombre de personnes qu'a dit le client

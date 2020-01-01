@@ -7,14 +7,6 @@ public class Commande {
         this.prix = 0.0;
     }
 
-    public boolean[] getCommande() {
-        return commande;
-    }
-
-    public double getPrix() {
-        return prix;
-    }
-
     public double commandeFormule(String rep) {
         if (rep.equals("mojito")) {
             prix = 6.0;
@@ -29,9 +21,9 @@ public class Commande {
         return prix;
     }
 
-    public double commandeCarte(boolean entrée, boolean plat, boolean accompagnement, boolean dessert, boolean boisson) {
-        if (entrée) {
-            commande[0] = entrée;
+    public double commandeCarte(boolean entree, boolean plat, boolean accompagnement, boolean dessert, boolean boisson) {
+        if (entree) {
+            commande[0] = entree;
             prix += 3.0;
         }
         if (plat) {
@@ -53,9 +45,9 @@ public class Commande {
         return prix;
     }
 
-    public double addMojito(boolean entrée, boolean accompagnement, boolean dessert) {
-        if (entrée) {
-            commande[0] = entrée;
+    public double addMojito(boolean entree, boolean accompagnement, boolean dessert) {
+        if (entree) {
+            commande[0] = entree;
             prix += 3.0;
         }
         if (accompagnement) {
@@ -69,9 +61,9 @@ public class Commande {
         return prix;
     }
 
-    public double addDaiquiri(boolean entrée, boolean dessert) {
-        if (entrée) {
-            commande[0] = entrée;
+    public double addDaiquiri(boolean entree, boolean dessert) {
+        if (entree) {
+            commande[0] = entree;
             prix += 3.0;
         }
         if (dessert) {
