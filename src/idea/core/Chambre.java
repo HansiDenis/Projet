@@ -1,3 +1,5 @@
+package idea.core;
+
 public class Chambre {
     private String type;
 
@@ -14,6 +16,7 @@ public class Chambre {
     public String getType() {
         return this.type;
     }
+
 
     public double Prix() {
         switch (this.type) {

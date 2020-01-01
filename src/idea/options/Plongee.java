@@ -1,3 +1,5 @@
+package idea.options;
+
 public class Plongee {
 
 	private double nbBapteme;

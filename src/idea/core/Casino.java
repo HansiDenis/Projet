@@ -1,5 +1,8 @@
+package idea.core;
+
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Scanner;
 
 
 public class Casino {
@@ -10,6 +13,7 @@ public class Casino {
     }
 
     private int gainpl = 0;
+
     public void setNbj(int nbj) {
         this.nbj = nbj;
     }
@@ -182,6 +186,23 @@ public class Casino {
         Random r = new Random();
         int n = r.nextInt(38) - 1;
         return Math.max(n, 0);
+    }
+
+    public void tour() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Que voulez vous miser?(rouge/noir/pair/impair/manque/passe) Il ya une mise surprise");
+        String mise = sc.nextLine();
+        if (!mise.equals("rouge") && !mise.equals("noir") && !mise.equals("pair") && !mise.equals("impair") && !mise.equals("manque") && !mise.equals("passe") && !mise.equals("zéro")) {
+            System.out.println("Type de mise renseigné non reconnu veuillez recommencer svp");
+            tour();
+            return;
+        }
+        System.out.println("Combien voulez vous miser?Mises entières uniquement");
+        int valeur = sc.nextInt();
+        this.miser(mise, valeur);
+        System.out.println("Résultats de ce tour:");
+        System.out.println("Gain total:" + this.getGainpl());
+        System.out.println("Jetons restants:" + this.getNbj());
     }
 
 }

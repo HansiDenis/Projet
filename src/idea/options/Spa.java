@@ -1,3 +1,5 @@
+package idea.options;
+
 public class Spa {
 
 

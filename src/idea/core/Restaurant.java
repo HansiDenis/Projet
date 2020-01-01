@@ -1,3 +1,5 @@
+package idea.core;
+
 public class Restaurant {
 
     public Restaurant() {

@@ -1,5 +1,8 @@
+package idea.core;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Hotel {
 
@@ -202,5 +205,176 @@ public class Hotel {
 
     public void setClient(Client[] client) {
         this.client = client;
+    }
+
+    public void Reservation(Client c) {
+        Scanner sc = new Scanner(System.in);
+        String[] tab = this.choixType();
+        int max = Integer.parseInt(tab[0]);
+        String type = tab[1];
+        System.out.println("Les chambres simples acceuillent au maximum 1 pers,les chambres doubles et deluxes 2 "
+                + "et les triples 3");
+        System.out.println("Combien de personnes occuperont la chambre?");
+        int n = sc.nextInt();
+        while (this.reservation(max, c, n, type) == 0) {
+            tab = this.choixType();
+            max = Integer.parseInt(tab[0]);
+            type = tab[1];
+            System.out.println("Combien de personnes occuperont la chambre?");
+            n = sc.nextInt();
+        }
+        System.out.println("Votre réservation est faite.");
+        this.ticket(c);
+    }
+
+    public void Reception() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Y-a-t-il un nouveau client ? (o/n)");
+        String rep = sc.nextLine();
+        while (rep.equals("o")) {
+            Client c = Test.Enregistrement();
+            this.Reservation(c);
+            System.out.println("Y-a-t-il un nouveau client ? (o/n)");
+            rep = sc.nextLine();
+        }
+    }
+
+    public void Casino() {
+        Client[] c = this.getClient();
+        for (Client i : c) {
+            if (!i.getNom().equals("non renseigné") && i.getPresence()) {
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Bienvenue devant le  casino " + i.getNom());
+                System.out.println("Voulez-vous entrer dans le casino ? (o/n)");
+                String rep = sc.nextLine();
+                if (rep.equals("o")) {
+                    i.partie();
+                }
+
+            }
+        }
+    }
+
+    public void Plongee() {
+        Client[] c = this.getClient();
+        for (Client i : c) {
+            if (!i.getNom().equals("non renseigné") && i.getPresence()) {
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Bienvenue au site de plongée " + i.getNom());
+                System.out.println("Voulez-vous faire un baptême de plongée ou une croisière ? (o/n)");
+                String rep = sc.nextLine();
+                if (rep.equals("o")) {
+                    i.plong();
+                }
+
+            }
+        }
+    }
+
+    public void wifi() {
+        Client[] c = this.getClient();
+        for (Client i : c) {
+            if (!i.getNom().equals("non renseigné") && i.getPresence()) {
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Bienvenue au site de règlement de l'utilisation d'Internet " + i.getNom());
+                System.out.println("Avez-vous utilisé Internet aujourd'hui ? (o/n)");
+                String rep = sc.nextLine();
+                if (rep.equals("o")) {
+                    i.CoInt();
+                }
+
+            }
+        }
+    }
+
+    public String[] choixType() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Quel type de chambre voulez-vous réserver ? (simple/double/triple/deluxe)");
+        String type = sc.nextLine();
+        int[] tab = this.max(type);
+
+        while (tab[1] == 0) {
+            System.out.println("Quel type de chambre voulez-vous réserver ? (simple/double/triple/deluxe)");
+            type = sc.nextLine();
+            tab = this.max(type);
+        }
+        String max = tab[0] + "";
+        return new String[]{max, type};
+    }
+
+    public void Restau() {
+        Client[] c = this.getClient();
+        Restaurant r = this.getResto();
+        System.out.println("Le restaurant ouvre ses portes, voici sa carte : \n\n");
+        r.afficheCarte();
+        for (Client i : c) {
+            if (!i.getNom().equals("non renseigné") && i.getPresence()) {
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Bienvenue au restaurant " + i.getNom());
+                System.out.println("Voulez-vous commander quelque chose ? (o/n)");
+                String rep = sc.nextLine();
+                while (rep.equals("o")) {
+                    i.commandeRestau();
+                    System.out.println("Voulez-vous commander autre chose ? (o/n)");
+                    rep = sc.nextLine();
+                }
+
+            }
+        }
+    }
+
+    public void Spa() {
+        Client[] c = this.getClient();
+        for (Client i : c) {
+            if (!i.getNom().equals("non renseigné") && i.getPresence()) {
+                double tot = 0;
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Bienvenue au Spa " + i.getNom());
+                System.out.println("Voulez-vous un massage ? (o/n)");
+                String rep = sc.nextLine();
+                while (rep.equals("o")) {
+                    tot += i.Massage();
+                    System.out.println("Voulez-vous autre massage ? (o/n)");
+                    rep = sc.nextLine();
+                }
+                System.out.println("Coût total : " + tot + " euros");
+            }
+        }
+    }
+
+    public void payrooms() {
+        Chambre[] rooms = this.getChambres();
+        Client[] c = this.getClient();
+        for (int i = 0; i < 40; i++) {
+            if (!c[i].getNom().equals("non renseigné")) {
+                c[i].setNote(c[i].getNote() + rooms[i].Prix());
+                System.out.println("La note de M(me) " + c[i].getNom() + " a été incrémentée de "
+                        + rooms[i].Prix() + " pour la location de sa chambre");
+            }
+        }
+
+    }
+
+    public void day() {
+        this.Reception();
+        System.out.println("\n");
+        this.payrooms();
+        System.out.println("\n");
+        this.Spa();
+        System.out.println("\n");
+        this.Restau();
+        System.out.println("\n");
+        this.Plongee();
+        System.out.println("\n");
+        this.Casino();
+        System.out.println("\n");
+        this.wifi();
+        System.out.println("\n");
+        Client[] c = this.getClient();
+        for (Client i : c) {
+            if (!i.getPresence()) {
+                i.setAbroad(i.getAbroad() + 1);
+            }
+        }
     }
 }
