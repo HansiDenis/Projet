@@ -212,7 +212,6 @@ public class Test {
             System.out.println("Combien de personnes occuperont la chambre?");
             n = sc.nextInt();
         }
-        Chambre chambre = new Chambre(type);
         System.out.println("Votre réservation est faite.");
         h.ticket(c);
     }
