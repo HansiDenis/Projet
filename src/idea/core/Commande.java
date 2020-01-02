@@ -1,14 +1,38 @@
 package idea.core;
 
+/**
+ * Classe représantant les commandes possibles dans le restaurant
+ *
+ * @author MalteseDenis
+ */
+
 public class Commande {
 
     boolean[] commande = new boolean[5];
     private double prix;
 
+    //**************************************************************************************************************
+    //CONSTRUCTORS
+    //**************************************************************************************************************
+
+    /**
+     * Constructeur par défault
+     * Le prix est initialisé à 0
+     */
+
     public Commande() {
         this.prix = 0.0;
     }
 
+    //*****************************************************************************************************************
+    //PUBLIC METHODS
+    //*****************************************************************************************************************
+
+    /**
+     * @fn Méthode réservée au client choisissant une formule
+     * @param rep formule choisie
+     * @return prix de la formule
+     */
     public double commandeFormule(String rep) {
         if (rep.equals("mojito")) {
             prix = 6.0;
@@ -22,6 +46,16 @@ public class Commande {
         }
         return prix;
     }
+
+    /**
+     * @fn Méthode réservée au client choisissant une commande à la carte
+     * @param entree true si le client veut une entrée, faux sinon
+     * @param plat true si le client veut un plat, faux sinon
+     * @param accompagnement true si le client veut un accompagnement, faux sinon
+     * @param dessert true si le client veut un dessert, faux sinon
+     * @param boisson true si le client veut une boisson, faux sinon
+     * @return prix de la commande
+     */
 
     public double commandeCarte(boolean entree, boolean plat, boolean accompagnement, boolean dessert, boolean boisson) {
         if (entree) {
@@ -47,6 +81,13 @@ public class Commande {
         return prix;
     }
 
+    /**
+     * @param entree         true si le client veut une entrée, faux sinon
+     * @param accompagnement true si le client veut un accompagnement, faux sinon
+     * @param dessert        true si le client veut un dessert, faux sinon
+     * @return prix de la commande
+     * @fn Méthode réservée au client choisissant une formule mojito. Permet d'ajouter un supplément
+     */
     public double addMojito(boolean entree, boolean accompagnement, boolean dessert) {
         if (entree) {
             commande[0] = entree;
@@ -63,6 +104,12 @@ public class Commande {
         return prix;
     }
 
+    /**
+     * @param entree  true si le client veut une entrée, faux sinon
+     * @param dessert true si le client veut un dessert, faux sinon
+     * @return prix de la commande
+     * @fn Méthode réservée au client choisissant une formule daiquiri. Permet d'ajouter un supplément
+     */
     public double addDaiquiri(boolean entree, boolean dessert) {
         if (entree) {
             commande[0] = entree;
@@ -75,6 +122,9 @@ public class Commande {
         return prix;
     }
 
+    /**
+     * Déduit un ticket de 5 euros au prix de la commande
+     */
     public void useTicket() {
         if (prix > 5) {
             prix = prix - 5;
@@ -83,6 +133,9 @@ public class Commande {
         }
     }
 
+    /**
+     * Affiche le prix total de la commande
+     */
     public void afficheCommande() {
         System.out.println("Prix total de la commande : " + this.prix + "€");
     }

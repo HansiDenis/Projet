@@ -1,28 +1,34 @@
 package idea.options;
 
+/**
+ * Classe représentant l'option Spa de l'hôtel
+ *
+ * @author MalteseDenis
+ */
+
 public class Spa {
 
-
     public double prix;
-    private int Relaxant;
-    private int PierresChaudes;
-    private int ElixirBougie;
 
-    public Spa(int r, int pc, int eb, int p) {
-        this.Relaxant = r;
-        this.PierresChaudes = pc;
-        this.ElixirBougie = eb;
-        this.prix = p;
-    }
-
+    /**
+     * Constructeur par défaut
+     * Le prix est initialisé à 0
+     */
     public Spa() {
-        this(0, 0, 0, 0);
+        this.prix = 0.0;
     }
 
+    /**
+     * @fn affichage des tarifs du spa
+     */
     public void afficheTarifs() {
         System.out.println("     Tarifs du Spa     \nMassage relaxant : 50€\nMassage aux pierres chaudes : 70€\nMassage à l'elixir de bougie : 80€");
     }
 
+    /**
+     * @param rep massage choisi par le client
+     * @return prix du massage
+     */
     public double Prix(String rep) {
         switch (rep) {
             case "relaxant":
@@ -37,6 +43,9 @@ public class Spa {
         }
     }
 
+    /**
+     * @fn affichage du prix du massage
+     */
     public void affichePrix() {
         System.out.println("Coût du massage : " + prix + "€");
     }
