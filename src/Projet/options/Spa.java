@@ -1,4 +1,4 @@
-package idea.options;
+package Projet.options;
 
 /**
  * Classe représentant l'option Spa de l'hôtel
@@ -19,7 +19,7 @@ public class Spa {
     }
 
     /**
-     * @fn affichage des tarifs du spa
+     * affichage des tarifs du spa
      */
     public void afficheTarifs() {
         System.out.println("     Tarifs du Spa     \nMassage relaxant : 50€\nMassage aux pierres chaudes : 70€\nMassage à l'elixir de bougie : 80€");
@@ -44,7 +44,7 @@ public class Spa {
     }
 
     /**
-     * @fn affichage du prix du massage
+     * affichage du prix du massage
      */
     public void affichePrix() {
         System.out.println("Coût du massage : " + prix + "€");

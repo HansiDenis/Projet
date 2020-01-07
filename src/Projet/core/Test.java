@@ -1,4 +1,6 @@
-package idea.core;
+/*Ceci est la classe Test,l'éxécution de celle-ci lance la simulation de gestion d'hôtel
+ */
+package Projet.core;
 
 import java.util.Scanner;
 import java.util.stream.IntStream;
@@ -11,6 +13,9 @@ public class Test {
 
     }
 
+    /**
+     * Méthode simulant la création d'un hôtel de 40 chambres dont la répartition par types est choisie par le gérant
+     */
     private static Hotel crHotel() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Nous allons créer votre hôtel");
@@ -34,6 +39,11 @@ public class Test {
         return h;
     }
 
+    /**
+     * Méthode simulant l'enregistrement d'un client
+     *
+     * @return le client créé
+     */
     protected static Client Enregistrement() {
 
         Scanner sc = new Scanner(System.in);
@@ -49,7 +59,7 @@ public class Test {
         String num = sc.nextLine();
         System.out.println("Quel est votre indice téléphonique ?");
         String indice = sc.nextLine();
-        System.out.println("Quelle est la durée de votre séjour ? ");
+        System.out.println("Quelle est la durée de votre séjour ?(nombre de jours en entier) ");
         int duree = sc.nextInt();
         Client c = new Client(nom, prenom, birtday, mail, num, indice, duree);
         while (c.getEmail() == null || c.getNaissance() == null || c.getTel() == null) {
@@ -59,6 +69,9 @@ public class Test {
         return c;
     }
 
+    /**
+     * Méthode simulant une saison de l'hôtel (entre l'arrivée du premier client et le départ du dernier
+     */
     private static void Sejour() {
         Hotel h = crHotel();
         int max = 1;
