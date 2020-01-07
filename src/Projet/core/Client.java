@@ -1,8 +1,13 @@
-package idea.core;
+/*
+ * Cette classe appartient au package core qui constitue le coeur du projet
+ * et fait l'usage de différentes options d'où les imports
+ */
 
-import idea.options.ConnexionInternet;
-import idea.options.Plongee;
-import idea.options.Spa;
+package Projet.core;
+
+import Projet.options.ConnexionInternet;
+import Projet.options.Plongee;
+import Projet.options.Spa;
 
 import java.util.Scanner;
 
@@ -55,8 +60,8 @@ public class Client {
      * @param phone     le numéro de téléphone du client
      * @param ind       l'indice téléphonique du client
      * @param time      la durée du séjour du client
-     * @fn On effectue des tests de validité sur différentes informations afin que le client ne renseigne pas n'importe
-     * quoi ex:être né en l'100
+     *                  On effectue des tests de validité sur différentes informations afin que le client ne renseigne pas n'importe
+     *                  quoi ex:être né en l'100
      */
     //test validite naissance, email, tel
     public Client(String name, String firstName, String birth, String mail, String phone, String ind, int time) {
@@ -97,7 +102,7 @@ public class Client {
     }
 
     /**
-     * @fn Constructeur par défaut utilisé lors de la création de l'hôtel vide ou lorsque l'on vide une chambre
+     * Constructeur par défaut utilisé lors de la création de l'hôtel vide ou lorsque l'on vide une chambre
      * On met des valeurs sans significations car one ne les utilisera pas
      */
 
@@ -120,10 +125,11 @@ public class Client {
     }
 
     /**
-     * @param abroad la nouvelle @b durée
-     * @fn Cet attribut est intimement lié à la croisière donc la durée passée hors de l'hôtel ne peu pas excéder 10
+     * Cet attribut est intimement lié à la croisière donc la durée passée hors de l'hôtel ne peu pas excéder 10
      * jours et lorsqu'elle atteint cette marque le client est de retour donc est de nouveau présent
      * Met à jour la durée passée hors de l'hôtel
+     *
+     * @param abroad la nouvelle @b durée
      */
     public void setAbroad(int abroad) {
         if (abroad > 9) {
@@ -271,7 +277,7 @@ public class Client {
     }
 
     /**
-     * @fn On utilise les tickets uniquement un à la fois
+     * On utilise les tickets uniquement un à la fois
      */
     public void setTickets() {
         this.tickets = tickets - 1;
@@ -279,7 +285,7 @@ public class Client {
     //OTHERS
 
     /**
-     * @fn Affiche les informations du client
+     * Affiche les informations du client
      */
     public void affichage() {
         System.out.println("Nom et prénom du client : " + this.nom + " " + this.prenom + "\n e-mail : " + this.email + "\nTélephone : " + this.telephone + "" +
@@ -287,7 +293,7 @@ public class Client {
     }
 
     /**
-     * @fn Simule une partie de roulette avec interaction du client qui prend le rôle du joueur
+     * Simule une partie de roulette avec interaction du client qui prend le rôle du joueur
      */
     public void partie() {
         Casino cas = new Casino();
@@ -308,6 +314,9 @@ public class Client {
         this.setJetons(cas.getNbj());
     }
 
+    /**
+     * SImulation de la commande de baptêmes de plongée et de croisières
+     */
     public void plong() {
         Scanner sc = new Scanner(System.in);
         int l;
@@ -337,9 +346,12 @@ public class Client {
         System.out.println("Votre note de frais a bien été mise à jour");
     }
 
+    /**
+     * SImulation de la mise à jour de la note de frais du client pour l'utilisation journalière de la connexion internet
+     */
     public void CoInt() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Combien d'heures avez vous passé sur internet aujourd'hui?");
+        System.out.println("Combien d'heures avez vous passé sur internet aujourd'hui?(nombre d'heures en entier)");
         int t = sc.nextInt();
         ConnexionInternet co = new ConnexionInternet(t);
         System.out.println("La conexion internet est facturée 10euros de l'heure.Votre note de frais a été mise à jour.");
@@ -347,6 +359,9 @@ public class Client {
         this.setNote(this.getNote() + p);
     }
 
+    /**
+     * Simulation d'une commande au restaurant
+     */
     public void commandeRestau() {
         boolean entree;
         boolean plat;
@@ -438,6 +453,9 @@ public class Client {
 
     }
 
+    /**
+     * Simulation de la commande de différents types de massage
+     */
     public double Massage() {
         Spa spa = new Spa();
         Scanner sc = new Scanner(System.in);

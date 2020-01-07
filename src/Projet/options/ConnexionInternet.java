@@ -1,4 +1,4 @@
-package idea.options;
+package Projet.options;
 
 /**
  * Classe représentant l'option wifi de l'hôtel
@@ -13,9 +13,9 @@ public class ConnexionInternet {
 
     /**
      * Constructeur
+     * construit le prix en fonction du nombre d'heures
      *
      * @param h nombre d'heures de wifi utilisé
-     * @fn construit le prix en fonction du nombre d'heures
      */
     public ConnexionInternet(int h) {
         prix = 10 * h;

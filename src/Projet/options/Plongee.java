@@ -1,4 +1,4 @@
-package idea.options;
+package Projet.options;
 
 /**
  * Classe représentant l'option plongée de l'hôtel
@@ -20,9 +20,10 @@ public class Plongee {
 	}
 
 	/**
+	 * constructeur en fonction du nombre de bapteme(s) et du nombre de croisière(s)
+	 *
 	 * @param bapteme   nombre de baptême
 	 * @param croisiere nombre de croisières
-	 * @fn constructeur en fonction du nombre de bapteme(s) et du nombre de croisière(s)
 	 */
 	public Plongee(int bapteme, int croisiere) {
 
@@ -32,7 +33,7 @@ public class Plongee {
 	}
 
 	/**
-	 * @fn affichage des tarifs
+	 * affichage des tarifs
 	 */
 	public void affichageTarifs() {
 
@@ -41,7 +42,7 @@ public class Plongee {
 	}
 
 	/**
-	 * @fn affichage du prix total selon les activités choisies
+	 * affichage du prix total selon les activités choisies
 	 */
 	public void Prix() {
 

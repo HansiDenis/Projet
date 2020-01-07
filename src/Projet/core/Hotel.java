@@ -1,18 +1,25 @@
-package idea.core;
+/*
+ * Cette classe appartient au package core qui constitue le coeur du projet
+ * et fait l'usage de différentes options d'où les imports
+ */
+package Projet.core;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-/**
- * Classe représentant un hôtel composé de chambres, de clients et d'un restaurant
- * Représentation des chambres et des clients avec des tableaux
- *
- * @author MalteseDenis
- */
-
 public class Hotel {
-
+    //******************************************************************************************************************
+    //Attributs
+    //******************************************************************************************************************
+    /**
+     * @b numChambre le tableau d'entiers contenant tous les nombres de chambre de l'hôtel
+     * @b client le tableau de client occupant une chambre dans l'hôtel
+     * @b chambres le tableau de chambres de l'hôtel
+     * @b nbSimple/Double/Triple/Deluxe entiers représentant les nombres de chambres simples,doubles,triples et deluxes
+     * @b resto le restaurant de l'hôtel
+     * @b disponibilité tableau de chaînes de caractères qui disent si les chambres sont libres ou occupées
+     */
     private static int[] numChambre;
     private Client[] client;
     private Chambre[] chambres;
@@ -21,44 +28,21 @@ public class Hotel {
     private int nbTriple;
     private int nbDeluxe;
     private Restaurant resto;
-
-    public int getNbDouble() {
-        return nbDouble;
-    }
-
-    public int getNbTriple() {
-        return nbTriple;
-    }
-
-    public int getNbDeluxe() {
-        return nbDeluxe;
-    }
-
-    public int getNbSimple() {
-        return nbSimple;
-    }
-
-
     private String[] disponibilite;
 
-    //Test validite nb total = 100
 
-    //**************************************************************************************************************
-    //CONSTRUCTORS
-    //**************************************************************************************************************
+    //******************************************************************************************************************
+    //Constructeurs
+    //******************************************************************************************************************
 
     /**
-     * @param nbSimple nombre de chambre simple dans l'hôtel
-     * @param nbDouble nombre de chambre double dans l'hôtel
-     * @param nbTriple nombre de chambre triple dans l'hôtel
-     * @param nbDeluxe nombre de chambre deluxe dans l'hôtel
-     * @fn création d'un hôtel de 40 chambres au total ainsi que son restaurant
-     * Construction d'un tableau de chambres en fonction des paramètres
-     * Création d'un tableau de 40 clients, initialisé au client par défaut
-     * Création d'un tableau de disponibilité de taille 40, initialisé à "libre"
-     * Création d'un tableau de numéros de chambre, allant de 1 à 40, pour vérifier facilement si une chamnbre est libre ou non
+     * On crée l'hôtel
+     *
+     * @param nbSimple le nombre de chambres simples souhaité
+     * @param nbDouble le nombre de chambres doubles souhaité
+     * @param nbTriple le nombre de chambres triples souhaité
+     * @param nbDeluxe le nombre de chambres deluxes souhaité
      */
-
     public Hotel(int nbSimple, int nbDouble, int nbTriple, int nbDeluxe) {
         this.nbSimple = nbSimple;
         this.nbDouble = nbDouble;
@@ -89,51 +73,88 @@ public class Hotel {
         }
         this.resto = new Restaurant();
     }
-    //*****************************************************************************************************************
-    //PUBLIC METHODS
-
-    //*****************************************************************************************************************
-    //GETTERS
+    //******************************************************************************************************************
+    //Méthodes
+    //******************************************************************************************************************
+    //Getters
 
     /**
-     * @return le restaurant de l'hotel
+     * Getter du nombre de chambres doubles
+     *
+     * @return le nombre de chambres doubles de l'hôtel
+     */
+    public int getNbDouble() {
+        return nbDouble;
+    }
+
+    /**
+     * Getter du nombre de chambres triples
+     *
+     * @return le nombre de chambres triples de l'hôtel
+     */
+    public int getNbTriple() {
+        return nbTriple;
+    }
+
+    /**
+     * Getter du nombre de chambres deluxes
+     *
+     * @return le nombre de chambres deluxes de l'hôtel
+     */
+    public int getNbDeluxe() {
+        return nbDeluxe;
+    }
+
+    /**
+     * Getter du nombre de chambres simples
+     *
+     * @return le nombre de chambres simples de l'hôtel
+     */
+    public int getNbSimple() {
+        return nbSimple;
+    }
+
+    /**
+     * Getter du restaurant de l'hôtel
+     *
+     * @return le restaurant de l'hôtel
      */
     public Restaurant getResto() {
         return resto;
     }
 
     /**
-     * @return le tableau des clients de l'hôtel
+     * Getter du tableau de clients
+     *
+     * @return le tableau de clients de l'hôtel
      */
     public Client[] getClient() {
         return client;
     }
 
     /**
-     * @param client Client
-     * @fn remplace le tableau de client courant par celui en paramètre
+     * Mise à jour du tableau de clients
+     *
+     * @param client le tableau de client après mise à jour
      */
     public void setClient(Client[] client) {
         this.client = client;
     }
-
-    //*****************************************************************************************************************
-    //SETTERS
+    //Setters
 
     /**
-     * @return le tableau des chambres de l'hôtel
+     * Getter du tableau de chambres
+     *
+     * @return le tableau de chambres de l'hôtel
      */
     public Chambre[] getChambres() {
         return chambres;
     }
 
-    //*****************************************************************************************************************
-    //OTHERS
-
     /**
-     * @param num numéro de chambre
-     * @fn modifie la chambre numéro @b num qui devient libre
-     * @fn remplace le client numéro @b num par un client par défaut (équivalent à pas de client)
+     * Méthode vidant une chambre lorsque le client la quitte définitivement
+     *
+     * @param num le numéro de la chambre à vider
      */
     public void videchambre(int num) {
         this.disponibilite[num] = "libre";
@@ -141,17 +162,14 @@ public class Hotel {
     }
 
 
-    //grand while avec c=[3 1] puis c=max(type)
-
     /**
-     * @param type type de chambre
-     * @return un tableau de deux entiers
-     * @fn le premier élément du tableau correspond au nombre de personnes maximum possible dans une chambre
-     * @fn le second permet de s'assurer que le type de chambre renseigné est correct (1 pour correct, 0 sinon)
+     * Détermine le maximum de personnes pouvant occuper une chambre
+     *
+     * @param type le type de la chambre
+     * @return un couple d'entier dont la première composante est le maximum de personnes pouvant occuper la chambre
+     * et la seconde indiquant si il y a eu une erreur ou non
      */
     public int[] max(String type) {
-        //while(b){
-        //System.out.println("Quel type de chambre voulez-vous réserver ?(simple/double/triple/deluxe)");
         switch (type) {
             case "simple":
                 return new int[]{1, 1};
@@ -167,8 +185,8 @@ public class Hotel {
     }
 
     /**
-     * @fn affichage des numéros de chambres ainsi que leur type et leur disponibilité
-     * @fn affichage du nom du client si la chambre est occupée, "non renseigné" sinon
+     * Méthode affichant l'état courant de l'hôtel sous la forme:
+     * numérochambre           typechambre             disponibilité                client éventuel
      */
     public void affichage() {
         for (int i = 0; i < 40; i++) {
@@ -183,20 +201,15 @@ public class Hotel {
     }
 
     /**
-     * @param max  maximum de personnes possibles dans une chambre
-     * @param c    client réservant une chambre
-     * @param n    nombre de personnes pour qui le client réserve
-     * @param type type de chambre
-     * @return un entier (0 si la réservation ne peut pas se faire, 2 sinon)
-     * @fn vérification que le type de chambre demandé est disponible et que le nombre de personnes voulant l'occuper est approprié
-     * Par exemple 2 personnes dans une chambre simple n'est pas autorisé
-     * @fn attribue un numéro de chambre au client si la réservation est possible. La chambre devient occupée
+     * Méthode réalisant la réservation d'une chambre et qui y affecte un client
+     *
+     * @param max  le maximum de personnes pouvant occuper la chambre
+     * @param c    le client voulant réserver une chambre
+     * @param n    le nombre de personnes que le client veut faire occuper la chambre
+     * @param type le type de la chambre
+     * @return 0 si la réservation échoue et 2 si elle fonctionne
      */
-    public int reservation(int max, Client c, int n, String type) { //n: nombre de personnes qu'a dit le client
-        //Scanner sc = new Scanner(System.in);
-
-        //System.out.println("Combien de personnes occuperont la chambre?");
-        //int n = sc.nextInt();
+    public int reservation(int max, Client c, int n, String type) {
         if (n > max) {
             System.out.println("Vous ne pouvez pas être autant que ça dans cette chambre, veuillez réaliser une nouvelle réservation.");
             return 0;
@@ -212,9 +225,11 @@ public class Hotel {
     }
 
     /**
-     * @param type type de chambre
-     * @return le numéro de chambre disponible, 0 si il n'y en pas
-     * @fn vérifie qu'il a une chambre de type @b type disponible
+     * Méthode vérifiant si il reste des chambres disponible d'un certain type
+     *
+     * @param type le type de chambre
+     * @return -1 si il ne reste plus de chambre de ce type et le plus petit numéro de chambre du type demandé étant
+     * libre sinon
      */
     public int disponibilite(String type) {
         int b = 0;
@@ -273,8 +288,9 @@ public class Hotel {
     }
 
     /**
-     * @param c Client
-     * @fn créée un ticket pour le client
+     * Méthode imprimant le ticket certifiant de la réservation d'une chambre au sein de l'hôtel
+     *
+     * @param c le client qui a réalisé une réservation
      */
     public void ticket(Client c) {
         Date date = new Date();
@@ -291,11 +307,31 @@ public class Hotel {
         System.out.println("Chambre n°: " + numChambre + "       Type de chambre : " + type);
     }
 
+    /**
+     * Methode simulant le choix du type de chambre à réserver par le client
+     *
+     * @return un tableau de chaînes de caractères dont la première composante est le maximum de personnes pouvant
+     * occuper la chambre et la deuxième est le type de la chambre
+     */
+    public String[] choixType() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Quel type de chambre voulez-vous réserver ? (simple/double/triple/deluxe)");
+        String type = sc.nextLine();
+        int[] tab = this.max(type);
+
+        while (tab[1] == 0) {
+            System.out.println("Quel type de chambre voulez-vous réserver ? (simple/double/triple/deluxe)");
+            type = sc.nextLine();
+            tab = this.max(type);
+        }
+        String max = tab[0] + "";
+        return new String[]{max, type};
+    }
 
     /**
-     * @param c Client voulant effectuer une réservation
-     * @fn effectue la réservation si elle est possible selon les demandes du client
-     * @fn affiche le ticket du client
+     * Méthode simulant la réservation d'une chambre par un client avec interaction
+     *
+     * @param c le client réservant la chambre
      */
     public void Reservation(Client c) {
         Scanner sc = new Scanner(System.in);
@@ -318,7 +354,7 @@ public class Hotel {
     }
 
     /**
-     * @fn Réception de l'hôtel. Enregistre des clients tant qu'il y en a
+     * Méthode simulant la réception des nouveaux clients de l'hôtel au début de la journée
      */
     public void Reception() {
         Scanner sc = new Scanner(System.in);
@@ -333,26 +369,8 @@ public class Hotel {
     }
 
     /**
-     * @return un tableau avec le @b type de chambre que le client veut ainsi que @b le max de personnes possibles dans cette chambre
-     * La récupération du max est nécessaire pour l'utilisation de @b choixType dans @b reservation
-     * @fn détermine quel type de chambre le client veut
-     * @fn Réeffectue l'opération tant que le type ne correpond pas au nombre de personnes (chambre simple pour deux par exemple)
+     * Méthode simulant la participation ou non des différents clients de l'hôtel aux activités du Casino
      */
-    public String[] choixType() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Quel type de chambre voulez-vous réserver ? (simple/double/triple/deluxe)");
-        String type = sc.nextLine();
-        int[] tab = this.max(type);
-
-        while (tab[1] == 0) {
-            System.out.println("Quel type de chambre voulez-vous réserver ? (simple/double/triple/deluxe)");
-            type = sc.nextLine();
-            tab = this.max(type);
-        }
-        String max = tab[0] + "";
-        return new String[]{max, type};
-    }
-
     public void Casino() {
         Client[] c = this.getClient();
         for (Client i : c) {
@@ -370,7 +388,7 @@ public class Hotel {
     }
 
     /**
-     * @fn Propose au client un baptême de plongée ou une croisière
+     * Méthode simulant la participation ou non des différents clients de l'hôtel aux activités de plongée
      */
     public void Plongee() {
         Client[] c = this.getClient();
@@ -389,7 +407,7 @@ public class Hotel {
     }
 
     /**
-     * @fn Détermine combien
+     * Méthode simulant le payment du wifi pour tous les clients présents dans l'hôtel
      */
     public void wifi() {
         Client[] c = this.getClient();
@@ -407,7 +425,9 @@ public class Hotel {
         }
     }
 
-
+    /**
+     * Méthode simulant un repas de midi au restaurant
+     */
     public void Restau() {
         Client[] c = this.getClient();
         Restaurant r = this.getResto();
@@ -429,6 +449,9 @@ public class Hotel {
         }
     }
 
+    /**
+     * Méthode simulant la participation ou non des différents clients de l'hôtel aux activités du spa
+     */
     public void Spa() {
         Client[] c = this.getClient();
         for (Client i : c) {
@@ -448,6 +471,10 @@ public class Hotel {
         }
     }
 
+    /**
+     * Méthode simulant la mise à jours des notes de tous les clients de l'hôtel en y ajoutant le prix journalier
+     * de leurs chambres respectives
+     */
     public void payrooms() {
         Chambre[] rooms = this.getChambres();
         Client[] c = this.getClient();
@@ -461,7 +488,9 @@ public class Hotel {
 
     }
 
-
+    /**
+     * Méthode simulant le déroulement d'une journée à l'hôtel
+     */
     public void day() {
         this.Reception();
         System.out.println("\n");
