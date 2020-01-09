@@ -340,7 +340,6 @@ public class Client {
         }
         Plongee p = new Plongee(n, l);
         //Rajouter tableau de présence à l'hôtel
-        p.Prix();
         this.setNote(this.getNote() + p.total());
 
         System.out.println("Votre note de frais a bien été mise à jour");

@@ -42,25 +42,15 @@ public class Plongee {
 	}
 
 	/**
-	 * affichage du prix total selon les activités choisies
-	 */
-	public void Prix() {
-
-		double prixBapt = 80 * this.nbBapteme;
-		double prixCrois = 550 * this.nbCroisiere;
-		double tot = prixBapt + prixCrois;
-		System.out.println("Plongée sous-marine « Jardins de la Reine »\n\n Nombre Baptême de plongée : " + this.nbBapteme + "x 80€ = " + prixBapt + " €\nNombre Croisière : " + this.nbCroisiere + " x 550€ = " + prixCrois + " €\n\nTotal de plongées à payer : " + tot + "€");
-
-	}
-
-	/**
 	 * @return prix total de la plongée
 	 */
 	public double total() {
 
 		double prixBapt = 80 * this.nbBapteme;
 		double prixCrois = 550 * this.nbCroisiere;
-		return prixBapt + prixCrois;
+		double tot = prixBapt + prixCrois;
+		System.out.println("Plongée sous-marine « Jardins de la Reine »\n\n Nombre Baptême de plongée : " + this.nbBapteme + "x 80€ = " + prixBapt + " €\nNombre Croisière : " + this.nbCroisiere + " x 550€ = " + prixCrois + " €\n\nTotal de plongées à payer : " + tot + "€");
+		return tot;
 	}
 
 }

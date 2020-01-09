@@ -1,6 +1,9 @@
 /*Ceci est la classe Test,l'éxécution de celle-ci lance la simulation de gestion d'hôtel
  */
-package Projet.core;
+package Projet;
+
+import Projet.core.Client;
+import Projet.core.Hotel;
 
 import java.util.Scanner;
 import java.util.stream.IntStream;
@@ -44,7 +47,7 @@ public class Test {
      *
      * @return le client créé
      */
-    protected static Client Enregistrement() {
+    public static Client Enregistrement() {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Quel est votre nom ? ");

@@ -4,6 +4,8 @@
  */
 package Projet.core;
 
+import Projet.Test;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
