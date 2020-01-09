@@ -364,7 +364,11 @@ public class Hotel {
         String rep = sc.nextLine();
         while (rep.equals("o")) {
             Client c = Test.Enregistrement();
-            this.Reservation(c);
+            while (rep.equals("o")) {
+                this.Reservation(c);
+                System.out.println("Voulez-vous réserver une ou des autres chambres?(o/n)");
+                rep = sc.nextLine();
+            }
             System.out.println("Y-a-t-il un nouveau client ? (o/n)");
             rep = sc.nextLine();
         }
