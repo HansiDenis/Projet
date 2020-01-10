@@ -458,6 +458,7 @@ public class Client {
     public double Massage() {
         Spa spa = new Spa();
         Scanner sc = new Scanner(System.in);
+        spa.afficheTarifs();
         System.out.println("Quel type de massage voulez-vous ? (relaxant/pierres/elixir) ");
         String type = sc.nextLine();
         double prix = spa.Prix(type);
