@@ -20,8 +20,8 @@ public class FoodAndDrink extends Event {
 
     String reference() {
         if (kind.length() <= 2) {
-            return "f&d" + this.kind;
+            return "efd" + this.kind;
         }
-        return "f&d" + this.kind.substring(0, 2);
+        return "efd" + this.kind.substring(0, 2);
     }
 }
