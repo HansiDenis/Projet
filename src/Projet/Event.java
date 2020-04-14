@@ -3,13 +3,13 @@ package Projet;
 import java.util.List;
 
 abstract class Event {
-    int[] date;
+    int[] dalte;
     String place;
     String name;
     String type;
 
     int[] getDate() {
-        return date;
+        return dalte;
     }
 
     String getPlace() {
@@ -26,7 +26,7 @@ abstract class Event {
 
     abstract void takePlace(List<Event> newEvents);
 
-    //abstract boolean attendable();
+    abstract boolean attendable();
 
     abstract String reference();
 }
