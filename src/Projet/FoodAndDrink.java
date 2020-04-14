@@ -10,7 +10,7 @@ public class FoodAndDrink extends Event {
         this.date = date;
         this.place = place;
         this.name = name;
-        this.type = "Food&Drink";
+        this.type = "Food & Drink";
         this.kind = genre;
     }
 
