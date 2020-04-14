@@ -3,13 +3,13 @@ package Projet;
 import java.util.List;
 
 abstract class Event {
-    int[] date;
+    int[] dalte;
     String place;
     String name;
     String type;
 
     int[] getDate() {
-        return date;
+        return dalte;
     }
 
     String getPlace() {
