@@ -1,7 +1,5 @@
 package Projet;
 
-import java.util.List;
-
 public class Comedy extends Event {
 
     String comedy;
@@ -9,7 +7,7 @@ public class Comedy extends Event {
     int note;
 
     Comedy(int start, int end, String place, String name, String comedy, int note) {
-        date = new date[2];
+        date = new int[2];
         this.date[0] = start;
         this.date[1] = end;
         this.place = place;
@@ -23,7 +21,7 @@ public class Comedy extends Event {
     }
 
     @Override
-    void takePlace(List<Event> newEvents) {
+    void takePlace() {
 
         System.out.println("La comédie est là pour vous faire rire et vous changez les idées.");
         if (comedy.equals("one-man show")) {
@@ -37,5 +35,3 @@ public class Comedy extends Event {
     }
 }
 
-
-}

@@ -1,7 +1,5 @@
 package Projet;
 
-import java.util.List;
-
 abstract class Event {
     int[] date;
     String place;
@@ -24,7 +22,7 @@ abstract class Event {
         return type;
     }
 
-    abstract void takePlace(List<Event> newEvents);
+    abstract void takePlace();
 
     abstract String reference();
 }

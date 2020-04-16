@@ -1,7 +1,5 @@
 package Projet;
 
-import java.util.List;
-
 public class FoodAndDrink extends Event {
 
     public String kind; //le type, ie si c'est un restaurant, un bar, etc
@@ -17,9 +15,10 @@ public class FoodAndDrink extends Event {
     }
 
     @Override
-    void takePlace(List<Event> newEvents) {
+    void takePlace() {
         System.out.println("");
     }
+
 
     @Override
     String reference() {
