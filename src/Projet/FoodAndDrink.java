@@ -5,9 +5,8 @@ public class FoodAndDrink extends Event {
     public String kind; //le type, ie si c'est un restaurant, un bar, etc
 
     FoodAndDrink(int start, int end, String place, String name, String genre) {
-        date = new int[2];
-        this.date[0] = start;
-        this.date[1] = end;
+        this.start = start;
+        this.end = end;
         this.place = place;
         this.name = name;
         this.type = "Food & Drink";

@@ -1,13 +1,14 @@
 package Projet;
 
 abstract class Event {
-    int[] date;
+    int start;
+    int end;
     String place;
     String name;
     String type;
 
-    int[] getDate() {
-        return date;
+    String getDate() {
+        return "du " + start + " au " + end;
     }
 
     String getPlace() {

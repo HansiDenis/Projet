@@ -7,9 +7,8 @@ public class Comedy extends Event {
     int note;
 
     Comedy(int start, int end, String place, String name, String comedy, int note) {
-        date = new int[2];
-        this.date[0] = start;
-        this.date[1] = end;
+        this.start = start;
+        this.end = end;
         this.place = place;
         this.name = name;
         this.type = "Comedy";

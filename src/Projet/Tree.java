@@ -15,7 +15,7 @@ public class Tree {
         this.left = left;
         if (this.right != null) {
             this.dmax = this.right.calcmax(this.right.getMax());
-        }
+        } else dmax = 0;
     }
 
     Tree() {
@@ -61,6 +61,18 @@ public class Tree {
         return Math.max(this.getMax(), max);
     }
 
+    void updateDMaxes() {
+        if (this.right == null) {
+            this.dmax = 0;
+        }
+        if (this.left != null) {
+            this.left.updateDMaxes();
+        }
+        if (this.right != null) {
+            this.dmax = this.right.calcmax(this.right.getMax());
+            this.right.updateDMaxes();
+        }
+    }
 
     void add(Tree n) {
         if (this.root.dateequal(n.root)) {
@@ -70,14 +82,17 @@ public class Tree {
             this.root.events = withoutduplicates;
             this.add(n.right);
             this.add(n.left);
+            this.updateDMaxes();
             return;
         }
         if (n.root.min > this.root.min && this.right == null) {
             this.right = n;
+            this.updateDMaxes();
             return;
         }
         if (n.root.min < this.root.min && this.left == null) {
             this.left = n;
+            this.updateDMaxes();
             return;
         }
         if (n.root.min > this.root.min && !(this.right == null)) {
@@ -90,44 +105,79 @@ public class Tree {
 
     void insert(Node n) {
         if (this.root.dateequal(n)) {
-            this.root.events.addAll(n.events);
+            this.root.addEvents(n.events);
             LinkedHashSet<String> hashSet = new LinkedHashSet<>(this.root.events);
-            ArrayList<String> withoutduplicates = new ArrayList<>(hashSet);
-            this.root.events = withoutduplicates;
+            this.root.events = new ArrayList<>(hashSet);
+            this.updateDMaxes();
             return;
         }
         if (this.root.min == n.min && this.root.max != n.max) {
             if (this.root.max <= n.max) {
-                this.right.insert(n);
+                if (this.right != null) {
+                    this.right.insert(n);
+                } else {
+                    this.right = new Tree(n);
+                    this.updateDMaxes();
+                    return;
+                }
             } else {
-                this.left.insert(n);
+                if (this.left != null) {
+                    this.left.insert(n);
+                } else {
+                    this.left = new Tree(n);
+                    this.updateDMaxes();
+                    return;
+                }
             }
         }
-        if (n.min > this.root.min && this.right == null) {
-            this.right.root = n;
-            return;
-        }
-        if (n.min < this.root.min && this.left == null) {
-            this.left.root = n;
-            return;
-        }
         if (n.min > this.root.min) {
+            if (this.right == null) {
+                this.right = new Tree(n);
+                this.updateDMaxes();
+                return;
+            }
             if (n.min < this.right.root.min) {
                 Tree temp = this.right;
                 this.right = new Tree(n);
                 this.right.right = temp;
+                this.updateDMaxes();
+                return;
             } else {
                 this.right.insert(n);
             }
         }
         if (n.min < this.root.min) {
+            if (this.left == null) {
+                this.left = new Tree(n);
+                this.updateDMaxes();
+                return;
+            }
             if (n.min > this.left.root.min) {
                 Tree temp = this.left;
                 this.left = new Tree(n);
                 this.left.left = temp;
+                this.updateDMaxes();
             } else {
                 this.left.insert(n);
             }
         }
+    }
+
+    ArrayList<String> dateSearch(int mi, int ma) {
+        ArrayList<String> found = new ArrayList<String>();
+        if (this.root.max > mi && this.root.min < ma) {
+            found.addAll(this.root.events);
+        }
+        if (this.left != null) {
+            if (this.left.calcmax(this.left.getMax()) >= mi) {
+                found.addAll(this.left.dateSearch(mi, ma));
+            }
+        }
+        if (this.right != null) {
+            if (this.dmax >= mi) {
+                found.addAll(this.right.dateSearch(mi, ma));
+            }
+        }
+        return found;
     }
 }
