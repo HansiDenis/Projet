@@ -7,7 +7,7 @@ public class Theatre extends Event {
     String title;
     String genre;
 
-    Theatre(int start, int end, String place, String name, String actor, int nb, String genre) {
+    Theatre(int start, int end, String place, String name, String actor, int nb, String g) {
         this.start = start;
         this.end = end;
         this.place = place;
@@ -15,7 +15,7 @@ public class Theatre extends Event {
         this.type = "Theatre";
         this.mainActor = actor;
         this.nbPlaces = nb;
-        this.genre = genre;
+        this.genre = g;
     }
 
     @Override

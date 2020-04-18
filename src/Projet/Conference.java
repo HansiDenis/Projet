@@ -4,13 +4,13 @@ public class Conference extends Event {
 
     public String theme;
 
-    FoodAndDrink(int start, int end, String place, String name, String theme) {
+    FoodAndDrink(int start, int end, String place, String name, String th) {
         this.start = start;
         this.end = end;
         this.place = place;
         this.name = name;
         this.type = "Conference";
-        this.theme = theme;
+        this.theme = th;
     }
 
     @Override
