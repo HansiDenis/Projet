@@ -3,8 +3,8 @@ package Interaction;
 public class Textual {
     String city;
 
-    Textual(String cit) {
-        this.city = cit;
+    Textual(String cite) {
+        this.city = cite;
     }
 
     void start() {
