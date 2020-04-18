@@ -22,8 +22,8 @@ public class FoodAndDrink extends Event {
     @Override
     String reference() {
         if (kind.length() <= 2) {
-            return "efd" + this.kind;
+            return "FDE-" + this.kind;
         }
-        return "efd" + this.kind.substring(0, 2);
+        return "FDE-" + this.kind.substring(0, 2);
     }
 }

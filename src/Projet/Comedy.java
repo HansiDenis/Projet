@@ -30,7 +30,7 @@ public class Comedy extends Event {
 
     @Override
     String reference() {
-        return "SC" + comedy.substring(0, Integer.min(3, comedy.length()));
+        return "CE-" + comedy.substring(0, Integer.min(3, comedy.length()));
     }
 }
 
