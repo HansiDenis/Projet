@@ -1,4 +1,4 @@
-package Projet;
+package events;
 
 public class Theatre extends Event {
 
@@ -8,6 +8,8 @@ public class Theatre extends Event {
     String genre;
 
     Theatre(int start, int end, String place, String name, String actor, int nb, String g) {
+        NUMBER_OF_EVENTS += 1;
+        this.eventNumber = NUMBER_OF_EVENTS;
         this.start = start;
         this.end = end;
         this.place = place;
@@ -16,6 +18,7 @@ public class Theatre extends Event {
         this.mainActor = actor;
         this.nbPlaces = nb;
         this.genre = g;
+        AllEvents.getInstance().addEvent(this);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package Projet;
+package events;
 
 public class Party extends Event {
 
@@ -7,6 +7,8 @@ public class Party extends Event {
    int age; //pour anniv
 
     Party(int start, int end, String place, String name, String kind, String th, int age) {
+        NUMBER_OF_EVENTS += 1;
+        this.eventNumber = NUMBER_OF_EVENTS;
         this.start = start;
         this.end = end;
         this.place = place;
@@ -17,7 +19,7 @@ public class Party extends Event {
         if (kind.equals("anniversaire")) {
             this.age = age;
         }
-
+        AllEvents.getInstance().addEvent(this);
     }
 
     @Override

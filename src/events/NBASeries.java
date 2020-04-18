@@ -1,15 +1,16 @@
-package Projet;
+package events;
 
-class NBASeries extends SportEvent {
+public class NBASeries extends SportEvent {
     String team1;
     String team2;
     int places;
 
-    NBASeries(String name, String place, int start, int end, String team1, String team2, int places) {
-        super(name, place, start, end, "basketball");
+    public NBASeries(String name, String place, int start, int end, String team1, String team2, int places) {
+        super(name, place, start, end, "basketball", false);
         this.team1 = team1;
         this.team2 = team2;
         this.places = places;
+        AllEvents.getInstance().addEvent(this);
     }
 
     void takePlace() {

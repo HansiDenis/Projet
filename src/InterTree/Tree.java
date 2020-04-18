@@ -1,4 +1,7 @@
-package Projet;
+package InterTree;
+
+import events.AllEvents;
+import events.Event;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -22,7 +25,7 @@ public class Tree {
         this(new Node(), null, null);
     }
 
-    Tree(Node root) {
+    public Tree(Node root) {
         this(root, null, null);
     }
 
@@ -73,7 +76,6 @@ public class Tree {
             this.right.updateDMaxes();
         }
     }
-
     void add(Tree n) {
         if (this.root.dateEqual(n.root)) {
             this.root.events.addAll(n.root.events);
@@ -102,7 +104,7 @@ public class Tree {
         }
     }
 
-    void insert(Node n) {
+    public void insert(Node n) {
         if (this.root.dateEqual(n)) {
             this.root.addEvents(n.events);
             this.updateDMaxes();
@@ -162,7 +164,7 @@ public class Tree {
 
     ArrayList<String> dateSearch(int mi, int ma) {
         ArrayList<String> found = new ArrayList<>();
-        if (this.root.max > mi && this.root.min < ma) {
+        if (this.root.max >= mi && this.root.min <= ma) {
             found.addAll(this.root.events);
         }
         if (this.left != null) {
@@ -176,5 +178,24 @@ public class Tree {
             }
         }
         return found;
+    }
+
+    public ArrayList<Event> mixedSearch(int mi, int ma, String type) {
+        ArrayList<Event> mixedRes = new ArrayList<>();
+        ArrayList<String> dateRes = this.dateSearch(mi, ma);
+        ArrayList<Event> typeRes = AllEvents.getInstance().typeSearch(type);
+        for (Event res : typeRes) {
+            if (dateRes.contains(res.reference())) {
+                mixedRes.add(res);
+            }
+
+        }
+        return mixedRes;
+    }
+
+    public void addEvent(Event event) {
+        Node n = new Node(event.getStart(), event.getEnd());
+        n.addEvent(event);
+        this.insert(n);
     }
 }

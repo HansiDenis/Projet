@@ -1,4 +1,6 @@
-package Projet;
+package InterTree;
+
+import events.Event;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -15,8 +17,10 @@ public class Node {
         this.events = events;
     }
 
-    Node(int mi, int ma) {
-        this(mi, ma, null);
+    public Node(int mi, int ma) {
+        this.min = mi;
+        this.max = ma;
+        this.events = new ArrayList<>();
     }
 
     Node() {
@@ -27,7 +31,7 @@ public class Node {
         return this.min == n.min && this.max == n.max;
     }
 
-    void addEvent(String event) {
+    public void addEvent(String event) {
         if (this.events == null) {
             this.events = new ArrayList<>();
         }

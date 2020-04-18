@@ -1,4 +1,4 @@
-package Projet;
+package events;
 
 public abstract class Event {
     int start;
@@ -6,6 +6,16 @@ public abstract class Event {
     String place;
     String name;
     String type;
+    static int NUMBER_OF_EVENTS = 0;
+    int eventNumber;
+
+    public int getStart() {
+        return start;
+    }
+
+    public int getEnd() {
+        return end;
+    }
 
     String getDate() {
         return "du " + start + " au " + end;

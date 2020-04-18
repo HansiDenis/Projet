@@ -1,16 +1,21 @@
-package Projet;
+package events;
 
-class SportEvent extends Event {
+public class SportEvent extends Event {
     String sport;
     static int NUMBER_OF_EVENTS = 0;
 
-    SportEvent(String name, String place, int start, int end, String sport) {
+    public SportEvent(String name, String place, int start, int end, String sport, boolean make) {
+        NUMBER_OF_EVENTS += 1;
+        this.eventNumber = NUMBER_OF_EVENTS;
         this.name = name;
         this.place = place;
         this.start = start;
         this.end = end;
         this.sport = sport;
         this.type = "sport";
+        if (make) {
+            AllEvents.getInstance().addEvent(this);
+        }
     }
 
     @Override
@@ -20,8 +25,7 @@ class SportEvent extends Event {
 
     @Override
     public String reference() {
-        NUMBER_OF_EVENTS += 1;
-        return "SE-" + sport.substring(0, Integer.min(3, sport.length())) + NUMBER_OF_EVENTS + "-" + this.start + "-" + this.end;
+        return "SE-" + sport.substring(0, Integer.min(3, sport.length())) + eventNumber + "-" + this.start + "-" + this.end;
     }
 }
 
