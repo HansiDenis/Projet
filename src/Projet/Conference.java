@@ -4,7 +4,7 @@ public class Conference extends Event {
 
     public String theme;
 
-    FoodAndDrink(int start, int end, String place, String name, String th) {
+    Conference(int start, int end, String place, String name, String th) {
         this.start = start;
         this.end = end;
         this.place = place;
@@ -20,7 +20,7 @@ public class Conference extends Event {
 
 
     @Override
-    String reference() {
+    public String reference() {
         if (theme.length() <= 2) {
             return "CE-" + this.theme;
         }

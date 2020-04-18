@@ -19,7 +19,7 @@ class NBASeries extends SportEvent {
                 + team2 + ", la tension est palpable,qui sera couronné champion NBA?");
     }
 
-    String reference() {
+    public String reference() {
         return super.reference() + "-NBA-" + team1.substring(0, 1) + team2.substring(0, 1);
     }
 }

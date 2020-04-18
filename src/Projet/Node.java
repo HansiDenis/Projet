@@ -1,6 +1,7 @@
 package Projet;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 
 public class Node {
@@ -22,43 +23,41 @@ public class Node {
         this(0, 0, null);
     }
 
-    boolean dateequal(Node n) {
-        if (this.min == n.min && this.max == n.max) {
-            return true;
-        }
-        return false;
+    boolean dateEqual(Node n) {
+        return this.min == n.min && this.max == n.max;
     }
 
     void addEvent(String event) {
         if (this.events == null) {
-            this.events = new ArrayList<String>();
-            this.events.add(event);
-        } else {
-            this.events.add(event);
+            this.events = new ArrayList<>();
         }
+        this.events.add(event);
+        LinkedHashSet<String> hashSet = new LinkedHashSet<>(this.events);
+        this.events = new ArrayList<>(hashSet);
     }
 
     void addEvent(Event event) {
         if (this.events == null) {
-            this.events = new ArrayList<String>();
-            this.events.add(event.reference());
-        } else {
-            this.events.add(event.reference());
+            this.events = new ArrayList<>();
         }
+        this.events.add(event.reference());
+        LinkedHashSet<String> hashSet = new LinkedHashSet<>(this.events);
+        this.events = new ArrayList<>(hashSet);
     }
 
     void addEvents(ArrayList<String> events) {
         if (this.events == null) {
-            this.events = new ArrayList<String>();
-            this.events.addAll(events);
-        } else {
-            this.events.addAll(events);
+            this.events = new ArrayList<>();
+
         }
+        this.events.addAll(events);
+        LinkedHashSet<String> hashSet = new LinkedHashSet<>(this.events);
+        this.events = new ArrayList<>(hashSet);
     }
 
     void addEvents2(ArrayList<Event> events) {
         if (this.events == null) {
-            this.events = new ArrayList<String>();
+            this.events = new ArrayList<>();
             for (Event event : events) {
                 this.events.add(event.reference());
             }
@@ -67,17 +66,19 @@ public class Node {
                 this.events.add(event.reference());
             }
         }
+        LinkedHashSet<String> hashSet = new LinkedHashSet<>(this.events);
+        this.events = new ArrayList<>(hashSet);
     }
 
     public String toString() {
-        String s = "Références des évènements du jour " + this.min + " au jour " + this.max + " : \n";
+        StringBuilder s = new StringBuilder("Références des évènements du jour " + this.min + " au jour " + this.max + " : \n");
         if (this.events != null) {
             for (String event : this.events) {
-                s = s + event + "\n";
+                s.append(event).append("\n");
             }
         } else {
-            s = s + "Pas d'évènements pour cette période";
+            s.append("Pas d'évènements pour cette période");
         }
-        return s;
+        return s.toString();
     }
 }

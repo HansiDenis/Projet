@@ -1,6 +1,6 @@
 package Projet;
 
-abstract class Event {
+public abstract class Event {
     int start;
     int end;
     String place;
@@ -25,5 +25,5 @@ abstract class Event {
 
     abstract void takePlace();
 
-    abstract String reference();
+    public abstract String reference();
 }

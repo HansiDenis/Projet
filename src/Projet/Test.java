@@ -33,8 +33,9 @@ public class Test {
         al.add(nn);
         al.add(s);
         AllEvents ae = new AllEvents(al);
-        System.out.println(ae.typeSearch("sport"));
+        System.out.println(ae.typeSearch("sport").get(1) instanceof NBASeries);
         System.out.println(ae.typeSearch("h"));
+
 
     }
 }

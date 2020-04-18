@@ -75,11 +75,10 @@ public class Tree {
     }
 
     void add(Tree n) {
-        if (this.root.dateequal(n.root)) {
+        if (this.root.dateEqual(n.root)) {
             this.root.events.addAll(n.root.events);
             LinkedHashSet<String> hashSet = new LinkedHashSet<>(this.root.events);
-            ArrayList<String> withoutduplicates = new ArrayList<>(hashSet);
-            this.root.events = withoutduplicates;
+            this.root.events = new ArrayList<>(hashSet);
             this.add(n.right);
             this.add(n.left);
             this.updateDMaxes();
@@ -95,7 +94,7 @@ public class Tree {
             this.updateDMaxes();
             return;
         }
-        if (n.root.min > this.root.min && !(this.right == null)) {
+        if (n.root.min > this.root.min) {
             this.right.add(n);
         }
         if (n.root.min < this.root.min && !(this.left == null)) {
@@ -104,10 +103,8 @@ public class Tree {
     }
 
     void insert(Node n) {
-        if (this.root.dateequal(n)) {
+        if (this.root.dateEqual(n)) {
             this.root.addEvents(n.events);
-            LinkedHashSet<String> hashSet = new LinkedHashSet<>(this.root.events);
-            this.root.events = new ArrayList<>(hashSet);
             this.updateDMaxes();
             return;
         }
@@ -164,7 +161,7 @@ public class Tree {
     }
 
     ArrayList<String> dateSearch(int mi, int ma) {
-        ArrayList<String> found = new ArrayList<String>();
+        ArrayList<String> found = new ArrayList<>();
         if (this.root.max > mi && this.root.min < ma) {
             found.addAll(this.root.events);
         }

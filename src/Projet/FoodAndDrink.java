@@ -15,12 +15,12 @@ public class FoodAndDrink extends Event {
 
     @Override
     void takePlace() {
-        System.out.println("");
+        System.out.println();
     }
 
 
     @Override
-    String reference() {
+    public String reference() {
         if (kind.length() <= 2) {
             return "FDE-" + this.kind;
         }

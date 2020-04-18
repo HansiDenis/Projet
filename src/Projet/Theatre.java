@@ -25,7 +25,7 @@ public class Theatre extends Event {
 
 
     @Override
-    String reference() {
+    public String reference() {
         if (title.length() <= 2) {
             return "TE-" + title;
         }

@@ -6,15 +6,16 @@ public class Party extends Event {
    String theme;
    int age; //pour anniv
 
-    Theatre(int start, int end, String place, String name, String kind, String th, int age) {
+    Party(int start, int end, String place, String name, String kind, String th, int age) {
         this.start = start;
         this.end = end;
         this.place = place;
         this.name = name;
+        this.theme = th;
         this.type = "Party";
         this.kind = kind;
-        if (kind.equals("anniversaire")){
-            this.age=age;
+        if (kind.equals("anniversaire")) {
+            this.age = age;
         }
 
     }
@@ -26,8 +27,8 @@ public class Party extends Event {
 
 
     @Override
-    String reference() {
-        if (title.length() <= 2) {
+    public String reference() {
+        if (name.length() <= 2) {
             return "PE-" + this.kind;
         }
         return "PE-" + this.kind.substring(0, 2);
