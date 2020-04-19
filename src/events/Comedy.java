@@ -13,7 +13,7 @@ public class Comedy extends Event {
         this.end = end;
         this.place = place;
         this.name = name;
-        this.type = "Comedy";
+        this.type = "comedy";
         this.comedy = comedy;
         if (comedy.equals("one-man show")) {
             this.note = note;
@@ -23,11 +23,12 @@ public class Comedy extends Event {
     }
 
     @Override
-    void takePlace() {
+    public void present() {
 
         System.out.println("La comédie est là pour vous faire rire et vous changez les idées.");
         if (comedy.equals("one-man show")) {
-            System.out.println("si vous le souhaiter, vous pouvez mettre une note sur tripadvisor.");
+            System.out.println("C'est un one-man show si vous le souhaitez, vous pouvez mettre une note sur tripadvisor.\n"
+                    + "La note actuelle est de" + this.note + ".");
         }
     }
 

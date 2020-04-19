@@ -3,21 +3,21 @@ package events;
 public class NBASeries extends SportEvent {
     String team1;
     String team2;
-    int places;
+    int seats;
 
     public NBASeries(String name, String place, int start, int end, String team1, String team2, int places) {
-        super(name, place, start, end, "basketball", false);
+        super(name, place, start, end, "basketball", false, false);
         this.team1 = team1;
         this.team2 = team2;
-        this.places = places;
+        this.seats = places;
         AllEvents.getInstance().addEvent(this);
     }
 
-    void takePlace() {
+    public void present() {
 
-        super.takePlace();
-        System.out.println("Vous avez la chance d'assister à la s&rie où s'opposent les" + team1 + "et les"
-                + team2 + ", la tension est palpable,qui sera couronné champion NBA?");
+        super.present();
+        System.out.println("Finales NBA opposant les " + team1 + " et les "
+                + team2 + ", la tension sera très ressentie pour les " + this.seats + " spectateurs,qui sera couronné champion NBA?");
     }
 
     public String reference() {

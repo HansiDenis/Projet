@@ -5,7 +5,7 @@ public abstract class Event {
     int end;
     String place;
     String name;
-    String type;
+    String type = "";
     static int NUMBER_OF_EVENTS = 0;
     int eventNumber;
 
@@ -21,19 +21,16 @@ public abstract class Event {
         return "du " + start + " au " + end;
     }
 
-    String getPlace() {
-        return place;
+    public boolean hasNoType() {
+        return true;
     }
 
-    String getName() {
-        return name;
+    public void present() {
+        System.out.println("Nom de l'évènement: " + this.name + "\n"
+                + "Date de l'évèment: " + getDate() + "\n"
+                + "Lieu: " + this.type + "\n"
+                + "Type de l'évènement: " + this.type);
     }
-
-    String getType() {
-        return type;
-    }
-
-    abstract void takePlace();
 
     public abstract String reference();
 }

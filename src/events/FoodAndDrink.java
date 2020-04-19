@@ -11,14 +11,15 @@ public class FoodAndDrink extends Event {
         this.end = end;
         this.place = place;
         this.name = name;
-        this.type = "Food & Drink";
+        this.type = "f&d";
         this.kind = genre;
         AllEvents.getInstance().addEvent(this);
     }
 
     @Override
-    void takePlace() {
-        System.out.println();
+    public void present() {
+        super.present();
+        System.out.println("Venez vous régaler avec nous dans notre" + this.kind + ".");
     }
 
 

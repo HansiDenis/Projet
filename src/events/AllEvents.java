@@ -25,7 +25,7 @@ public class AllEvents {
         AllEvents.allEvents.put(event.reference(), event);
     }
 
-    ArrayList<Event> refSearch(ArrayList<String> wanted) {
+    public ArrayList<Event> refSearch(ArrayList<String> wanted) {
         ArrayList<Event> found = new ArrayList<>();
         for (String want : wanted) {
             if (allEvents.get(want) != null) {
@@ -35,10 +35,10 @@ public class AllEvents {
         return found;
     }
 
-    Event refSearch(String wanted) {
+    public Event refSearch(String wanted) {
         Event found = new Event() {
             @Override
-            void takePlace() {
+            public void present() {
             }
 
             @Override

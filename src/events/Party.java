@@ -14,7 +14,7 @@ public class Party extends Event {
         this.place = place;
         this.name = name;
         this.theme = th;
-        this.type = "Party";
+        this.type = "party";
         this.kind = kind;
         if (kind.equals("anniversaire")) {
             this.age = age;
@@ -23,8 +23,13 @@ public class Party extends Event {
     }
 
     @Override
-    void takePlace() {
-        System.out.println("");
+    public void present() {
+        super.present();
+        System.out.println("Venez avec nous célebrer ce(t)" + this.kind + ".\n"
+                + "Le thème de la fête est " + this.theme + ".");
+        if (this.kind.equals("anniversaire")) {
+            System.out.println("On vous invite à célebrer ses " + this.age + " ans.");
+        }
     }
 
 

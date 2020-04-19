@@ -2,8 +2,8 @@ package events;
 
 public class Theatre extends Event {
 
-    public String mainActor;
-    public int nbPlaces;
+    public String leadActor;
+    public int seats;
     String title;
     String genre;
 
@@ -14,16 +14,19 @@ public class Theatre extends Event {
         this.end = end;
         this.place = place;
         this.name = name;
-        this.type = "Theatre";
-        this.mainActor = actor;
-        this.nbPlaces = nb;
+        this.type = "theatre";
+        this.leadActor = actor;
+        this.seats = nb;
         this.genre = g;
         AllEvents.getInstance().addEvent(this);
     }
 
     @Override
-    void takePlace() {
-        System.out.println("");
+    public void present() {
+        super.present();
+        System.out.println("Acteur principal: " + this.leadActor + "\n"
+                + "Nombre de places: " + this.seats + "\n"
+                + "Genre: " + this.genre);
     }
 
 

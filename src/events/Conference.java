@@ -2,23 +2,31 @@ package events;
 
 public class Conference extends Event {
 
-    public String theme;
+    String theme;
+    int ticketPrice = 0;
 
-    Conference(int start, int end, String place, String name, String th) {
+    Conference(int start, int end, String place, String name, String th, boolean paid) {
         NUMBER_OF_EVENTS += 1;
         this.eventNumber = NUMBER_OF_EVENTS;
         this.start = start;
         this.end = end;
         this.place = place;
         this.name = name;
-        this.type = "Conference";
+        this.type = "conference";
         this.theme = th;
+        if (paid) {
+            this.ticketPrice = 5;
+        }
         AllEvents.getInstance().addEvent(this);
     }
 
     @Override
-    void takePlace() {
-        System.out.println();
+    public void present() {
+        super.present();
+        System.out.println("Une conférence très enrichissante (Thème: " + this.theme + ").");
+        if (this.ticketPrice != 0) {
+            System.out.println("Prix du ticket: " + this.ticketPrice + " euros");
+        }
     }
 
 

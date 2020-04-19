@@ -162,7 +162,7 @@ public class Tree {
         }
     }
 
-    ArrayList<String> dateSearch(int mi, int ma) {
+    public ArrayList<String> dateSearch(int mi, int ma) {
         ArrayList<String> found = new ArrayList<>();
         if (this.root.max >= mi && this.root.min <= ma) {
             found.addAll(this.root.events);
@@ -190,6 +190,8 @@ public class Tree {
             }
 
         }
+        LinkedHashSet<Event> hashSet = new LinkedHashSet<>(mixedRes);
+        mixedRes = new ArrayList<>(hashSet);
         return mixedRes;
     }
 

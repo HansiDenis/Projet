@@ -2,6 +2,7 @@ package Tests;
 
 import InterTree.Node;
 import InterTree.Tree;
+import Interaction.TextualInteraction;
 import events.Event;
 import events.NBASeries;
 import events.SportEvent;
@@ -28,11 +29,12 @@ public class Test {
         tt.insert(f);
         NBASeries nn = new NBASeries("nn", "londres", 100, 120, "Lakers", "Clippers", 20000);
         Event nb = new NBASeries("nn", "londres", 100, 120, "Lakers", "Clippers", 20000);
-        Event s = new SportEvent("boxing", "Paris", 50, 50, "boxe", true);
+        Event s = new SportEvent("boxing", "Paris", 50, 50, "boxe", true, true);
         tt.addEvent(nn);
         tt.addEvent(nb);
         tt.addEvent(s);
-        System.out.println(tt.mixedSearch(50, 50, "sport"));
+        TextualInteraction t = new TextualInteraction("Quahog");
+        t.run(tt);
 
 
     }
