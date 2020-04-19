@@ -158,7 +158,7 @@ public class TextualInteraction {
         String display = "yes";
         while (display.equals("yes")) {
             Scanner res = new Scanner(System.in);
-            System.out.println("Voulez vous voir l'affichage de tout vos évènements?\n"
+            System.out.println("Voulez-vous voir l'affichage de tout vos évènements?\n"
                     + "Tapez \"non\" si vous ne souhaitez pas l'affichage, il sera effectué dans tout autre cas");
             display = res.nextLine();
             display(events);
