@@ -33,8 +33,8 @@ public class Conference extends Event {
     @Override
     public String reference() {
         if (theme.length() <= 2) {
-            return "CE-" + this.theme;
+            return "CE-" + this.theme + eventNumber + "-" + this.start + "-" + this.end;
         }
-        return "CE-" + this.theme.substring(0, 2);
+        return "CE-" + this.theme.substring(0, 2) + eventNumber + "-" + this.start + "-" + this.end;
     }
 }

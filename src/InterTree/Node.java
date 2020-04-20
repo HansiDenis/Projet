@@ -9,11 +9,13 @@ import java.util.LinkedHashSet;
 public class Node {
     int min;
     int max;
+    int dmax;
     ArrayList<String> events;
 
     Node(int mi, int ma, ArrayList<String> events) {
         min = mi;
         max = ma;
+        dmax = this.max;
         this.events = events;
     }
 

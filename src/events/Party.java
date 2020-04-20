@@ -36,8 +36,8 @@ public class Party extends Event {
     @Override
     public String reference() {
         if (name.length() <= 2) {
-            return "PE-" + this.kind;
+            return "PE-" + this.kind + eventNumber + "-" + this.start + "-" + this.end;
         }
-        return "PE-" + this.kind.substring(0, 2);
+        return "PE-" + this.kind.substring(0, 2) + eventNumber + "-" + this.start + "-" + this.end;
     }
 }

@@ -33,8 +33,8 @@ public class Theatre extends Event {
     @Override
     public String reference() {
         if (title.length() <= 2) {
-            return "TE-" + title;
+            return "TE-" + title + eventNumber + "-" + this.start + "-" + this.end;
         }
-        return "TE-" + title.substring(0, 2);
+        return "TE-" + title.substring(0, 2) + eventNumber + "-" + this.start + "-" + this.end;
     }
 }

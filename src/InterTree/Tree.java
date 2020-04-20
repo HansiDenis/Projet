@@ -8,7 +8,6 @@ import java.util.LinkedHashSet;
 
 public class Tree {
     Node root;
-    int dmax;
     Tree right;
     Tree left;
 
@@ -17,8 +16,8 @@ public class Tree {
         this.right = right;
         this.left = left;
         if (this.right != null) {
-            this.dmax = this.right.calcmax(this.right.getMax());
-        } else dmax = 0;
+            this.root.dmax = this.right.calcmax(this.right.getMax());
+        }
     }
 
     Tree() {
@@ -61,18 +60,18 @@ public class Tree {
             max = left.calcmax(max);
         }
 
-        return Math.max(this.getMax(), max);
+        return max;
     }
 
     void updateDMaxes() {
         if (this.right == null) {
-            this.dmax = 0;
+            this.root.dmax = this.root.max;
         }
         if (this.left != null) {
             this.left.updateDMaxes();
         }
         if (this.right != null) {
-            this.dmax = this.right.calcmax(this.right.getMax());
+            this.root.dmax = this.right.calcmax(this.right.getMax());
             this.right.updateDMaxes();
         }
     }
@@ -173,7 +172,7 @@ public class Tree {
             }
         }
         if (this.right != null) {
-            if (this.dmax >= mi) {
+            if (this.root.dmax >= mi) {
                 found.addAll(this.right.dateSearch(mi, ma));
             }
         }
