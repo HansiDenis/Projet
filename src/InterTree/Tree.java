@@ -1,4 +1,7 @@
 package InterTree;
+/**
+ * Classe servant à la représentation des arbres d'intervalles
+ */
 
 import events.AllEvents;
 import events.Event;
@@ -11,6 +14,13 @@ public class Tree {
     Tree right;
     Tree left;
 
+    /**
+     * Constructeur
+     *
+     * @param root
+     * @param right
+     * @param left
+     */
     Tree(Node root, Tree right, Tree left) {
         this.root = root;
         this.right = right;

@@ -29,7 +29,7 @@ public class Test {
         tt.insert(f);
         NBASeries nn = new NBASeries("nn", "londres", 100, 120, "Lakers", "Clippers", 20000);
         Event nb = new NBASeries("nn", "londres", 100, 120, "Lakers", "Clippers", 20000);
-        Event s = new SportEvent("boxing", "Paris", 50, 50, "boxe", true, true);
+        Event s = new SportEvent("boxing", "Paris", 50, 50, "boxe", true, 0);
         tt.addEvent(nn);
         tt.addEvent(nb);
         tt.addEvent(s);

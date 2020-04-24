@@ -53,7 +53,6 @@ public class Node {
     /**
      * Ajout de la référence d'un évènement(si elle en est une) à la liste de références du
      * noeud
-     *
      * @param event éventuelle référence d'un évènement que l'on veut ajouter au noeud
      */
     public void addEvent(String event) {
@@ -61,11 +60,17 @@ public class Node {
             this.events = new ArrayList<>();
         }
         this.events.add(event);
+        //Processus d'unification des évènements de la liste
         LinkedHashSet<String> hashSet = new LinkedHashSet<>(this.events);
         this.events = new ArrayList<>(hashSet);
     }
 
-
+    /**
+     * Ajout de la référence d'un évènement dans la liste du noeud
+     *
+     * @param event évènement dont on va récupérer la référence et l'ajouter à la liste
+     *              du noeud
+     */
     void addEvent(Event event) {
         if (this.events == null) {
             this.events = new ArrayList<>();
@@ -75,6 +80,11 @@ public class Node {
         this.events = new ArrayList<>(hashSet);
     }
 
+    /**
+     * Ajout de références de plusieurs évènements
+     *
+     * @param events ArrayList de références d'évènements
+     */
     void addEvents(ArrayList<String> events) {
         if (this.events == null) {
             this.events = new ArrayList<>();
@@ -85,7 +95,11 @@ public class Node {
         this.events = new ArrayList<>(hashSet);
     }
 
-
+    /**
+     * Méthode d'affichage du noeud
+     *
+     * @return affichage textuel du noeud
+     */
     public String toString() {
         StringBuilder s = new StringBuilder("Références des évènements du jour " + this.min + " au jour " + this.max + " : \n");
         if (this.events != null) {
