@@ -11,16 +11,13 @@ public class Comedy extends Event {
 
     /**
      * Constructeur d'un évènement de type comédie et ajout de celui-ci à la HashMap hashAll
-     *
-     * @param start      jour de début
+     *  @param start      jour de début
      * @param end        jour de fin
      * @param place      lieu
      * @param name       intitulé de l'évènement
      * @param ComedyType type de comédie
-     * @param runiTime   durée
-     * @param note       note sur TripAdvisor s'il s'agit d'un one-man show
      */
-    Comedy(int start, int end, String place, String name, String ComedyType, int runiTime, int note) {
+    public Comedy(int start, int end, String place, String name, String ComedyType) {
         NUMBER_OF_EVENTS += 1;
         this.eventNumber = NUMBER_OF_EVENTS;
         this.start = start;

@@ -16,7 +16,7 @@ public class FoodAndDrink extends Event {
      * @param name  intitulé de l'évènement
      * @param genre type d'évènement Food&Drink
      */
-    FoodAndDrink(int start, int end, String place, String name, String genre) {
+    public FoodAndDrink(int start, int end, String place, String name, String genre) {
         NUMBER_OF_EVENTS += 1;
         this.eventNumber = NUMBER_OF_EVENTS;
         this.start = start;

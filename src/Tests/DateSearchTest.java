@@ -29,11 +29,11 @@ public class DateSearchTest {
         System.out.println(tree.dateSearch(4, 8));
         System.out.println("Test d'une date correcte qui intersecte tous les noeuds de l'arbre : ");
         System.out.println(tree.dateSearch(12, 24));
-        System.out.println("Test d'une date correcte qui n'intersecte pas l'arbre : ");
-        System.out.println(tree.dateSearch(53, 56));
     }
 
     public void negativeTest(){
+        System.out.println("Test d'une date correcte qui n'intersecte pas l'arbre : ");
+        System.out.println(tree.dateSearch(53, 56));
         System.out.println("Test d'une date incorrecte (début > fin) : ");
         System.out.println(tree.dateSearch(12, 8));
     }
