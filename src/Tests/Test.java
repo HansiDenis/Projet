@@ -1,6 +1,11 @@
-package Projet;
+package Tests;
 
-import java.util.ArrayList;
+import InterTree.Node;
+import InterTree.Tree;
+import Interaction.TextualInteraction;
+import events.Event;
+import events.NBASeries;
+import events.SportEvent;
 
 public class Test {
     public static void main(String[] args) {
@@ -17,24 +22,19 @@ public class Test {
         f.addEvent("3");
         Node g = new Node(8, 20);
         g.addEvent("4");
-        Tree t = new Tree(a);
-        Tree t1 = new Tree(d);
-        Tree tt = new Tree(c, t1, t);
+        Tree tt = new Tree(c);
+        tt.insert(a);
+        tt.insert(d);
         tt.insert(e);
         tt.insert(f);
         NBASeries nn = new NBASeries("nn", "londres", 100, 120, "Lakers", "Clippers", 20000);
         Event nb = new NBASeries("nn", "londres", 100, 120, "Lakers", "Clippers", 20000);
-        System.out.println(nn.reference());
-        System.out.println(nb.reference());
-        Event s = new SportEvent("boxing", "Paris", 50, 50, "boxe");
-        System.out.println(s.reference());
-        ArrayList<Event> al = new ArrayList<>();
-        al.add(nb);
-        al.add(nn);
-        al.add(s);
-        AllEvents ae = new AllEvents(al);
-        System.out.println(ae.typeSearch("sport").get(1) instanceof NBASeries);
-        System.out.println(ae.typeSearch("h"));
+        Event s = new SportEvent("boxing", "Paris", 50, 50, "boxe", true, true);
+        tt.addEvent(nn);
+        tt.addEvent(nb);
+        tt.addEvent(s);
+        TextualInteraction t= new TextualInteraction("Quahog");
+        t.run(tt);
 
 
     }

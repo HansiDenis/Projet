@@ -1,11 +1,13 @@
-package Projet;
+package InterTree;
+
+import events.AllEvents;
+import events.Event;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 
 public class Tree {
     Node root;
-    int dmax;
     Tree right;
     Tree left;
 
@@ -14,15 +16,15 @@ public class Tree {
         this.right = right;
         this.left = left;
         if (this.right != null) {
-            this.dmax = this.right.calcmax(this.right.getMax());
-        } else dmax = 0;
+            this.root.dmax = this.right.calcmax(this.right.getMax());
+        }
     }
 
     Tree() {
         this(new Node(), null, null);
     }
 
-    Tree(Node root) {
+    public Tree(Node root) {
         this(root, null, null);
     }
 
@@ -58,22 +60,21 @@ public class Tree {
             max = left.calcmax(max);
         }
 
-        return Math.max(this.getMax(), max);
+        return max;
     }
 
     void updateDMaxes() {
         if (this.right == null) {
-            this.dmax = 0;
+            this.root.dmax = this.root.max;
         }
         if (this.left != null) {
             this.left.updateDMaxes();
         }
         if (this.right != null) {
-            this.dmax = this.right.calcmax(this.right.getMax());
+            this.root.dmax = this.right.calcmax(this.right.getMax());
             this.right.updateDMaxes();
         }
     }
-
     void add(Tree n) {
         if (this.root.dateEqual(n.root)) {
             this.root.events.addAll(n.root.events);
@@ -102,7 +103,7 @@ public class Tree {
         }
     }
 
-    void insert(Node n) {
+    public void insert(Node n) {
         if (this.root.dateEqual(n)) {
             this.root.addEvents(n.events);
             this.updateDMaxes();
@@ -160,9 +161,12 @@ public class Tree {
         }
     }
 
-    ArrayList<String> dateSearch(int mi, int ma) {
+    public ArrayList<String> dateSearch(int mi, int ma) {
         ArrayList<String> found = new ArrayList<>();
-        if (this.root.max > mi && this.root.min < ma) {
+        if (mi > ma){
+            return null;
+        }
+        if (this.root.max >= mi && this.root.min <= ma) {
             found.addAll(this.root.events);
         }
         if (this.left != null) {
@@ -171,10 +175,31 @@ public class Tree {
             }
         }
         if (this.right != null) {
-            if (this.dmax >= mi) {
+            if (this.root.dmax >= mi) {
                 found.addAll(this.right.dateSearch(mi, ma));
             }
         }
         return found;
+    }
+
+    public ArrayList<Event> mixedSearch(int mi, int ma, String type) {
+        ArrayList<Event> mixedRes = new ArrayList<>();
+        ArrayList<String> dateRes = this.dateSearch(mi, ma);
+        ArrayList<Event> typeRes = AllEvents.getInstance().typeSearch(type);
+        for (Event res : typeRes) {
+            if (dateRes.contains(res.reference())) {
+                mixedRes.add(res);
+            }
+
+        }
+        LinkedHashSet<Event> hashSet = new LinkedHashSet<>(mixedRes);
+        mixedRes = new ArrayList<>(hashSet);
+        return mixedRes;
+    }
+
+    public void addEvent(Event event) {
+        Node n = new Node(event.getStart(), event.getEnd());
+        n.addEvent(event);
+        this.insert(n);
     }
 }
