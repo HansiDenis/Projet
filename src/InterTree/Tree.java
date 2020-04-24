@@ -1,4 +1,7 @@
 package InterTree;
+/**
+ * Classe servant à la représentation des arbres d'intervalles
+ */
 
 import events.AllEvents;
 import events.Event;
@@ -11,6 +14,13 @@ public class Tree {
     Tree right;
     Tree left;
 
+    /**
+     * Constructeur
+     *
+     * @param root
+     * @param right
+     * @param left
+     */
     Tree(Node root, Tree right, Tree left) {
         this.root = root;
         this.right = right;
@@ -18,10 +28,6 @@ public class Tree {
         if (this.right != null) {
             this.root.dmax = this.right.calcmax(this.right.getMax());
         }
-    }
-
-    Tree() {
-        this(new Node(), null, null);
     }
 
     public Tree(Node root) {
@@ -162,6 +168,9 @@ public class Tree {
     }
 
     public ArrayList<String> dateSearch(int mi, int ma) {
+        if (mi > ma) {
+            System.out.println("Erreur :minimum supérieur au maximum recherche au rés ");
+        }
         ArrayList<String> found = new ArrayList<>();
         if (this.root.max >= mi && this.root.min <= ma) {
             found.addAll(this.root.events);

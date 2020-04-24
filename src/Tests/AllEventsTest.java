@@ -1,7 +1,5 @@
 package Tests;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class AllEventsTest {
 
     @org.junit.jupiter.api.Test

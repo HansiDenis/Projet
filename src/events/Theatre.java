@@ -1,5 +1,8 @@
 package events;
 
+/**
+ * Classe représentant les pièces de théâtre
+ */
 public class Theatre extends Event {
 
     public String leadActor;
@@ -7,6 +10,17 @@ public class Theatre extends Event {
     String title;
     String genre;
 
+    /**
+     * Constructeur
+     *
+     * @param start jour de début
+     * @param end   jour de fin
+     * @param place lieu
+     * @param name  intitulé de l'évènement
+     * @param actor acteur principal
+     * @param nb    nombre de places
+     * @param g     genre de pièce(drame/historique)
+     */
     Theatre(int start, int end, String place, String name, String actor, int nb, String g) {
         NUMBER_OF_EVENTS += 1;
         this.eventNumber = NUMBER_OF_EVENTS;
@@ -21,6 +35,9 @@ public class Theatre extends Event {
         AllEvents.getInstance().addEvent(this);
     }
 
+    /**
+     * Méthode d'affichage de l'évènement
+     */
     @Override
     public void present() {
         super.present();
@@ -29,12 +46,25 @@ public class Theatre extends Event {
                 + "Genre: " + this.genre);
     }
 
-
+    /**
+     * Méthode construisant la référence d'accès de l'évènement dans la HashMap hashAll
+     *
+     * @return la référence de l'évènement
+     */
     @Override
     public String reference() {
         if (title.length() <= 2) {
             return "TE-" + title + eventNumber + "-" + this.start + "-" + this.end;
         }
         return "TE-" + title.substring(0, 2) + eventNumber + "-" + this.start + "-" + this.end;
+    }
+
+    /**
+     * Méthode disant si l'évènement à un type ou non
+     *
+     * @return false car l'évènement à effectivement un type("theatre")
+     */
+    public boolean hasNoType() {
+        return false;
     }
 }
