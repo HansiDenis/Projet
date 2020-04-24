@@ -21,7 +21,7 @@ public class Tree {
      * @param right
      * @param left
      */
-    Tree(Node root, Tree right, Tree left) {
+    public Tree(Node root, Tree right, Tree left) {
         this.root = root;
         this.right = right;
         this.left = left;
