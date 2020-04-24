@@ -20,10 +20,6 @@ public class Tree {
         }
     }
 
-    Tree() {
-        this(new Node(), null, null);
-    }
-
     public Tree(Node root) {
         this(root, null, null);
     }
@@ -162,6 +158,9 @@ public class Tree {
     }
 
     public ArrayList<String> dateSearch(int mi, int ma) {
+        if (mi > ma) {
+            System.out.println("Erreur :minimum supérieur au maximum recherche au rés ");
+        }
         ArrayList<String> found = new ArrayList<>();
         if (this.root.max >= mi && this.root.min <= ma) {
             found.addAll(this.root.events);

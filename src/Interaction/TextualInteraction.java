@@ -1,4 +1,7 @@
 package Interaction;
+/**
+ * Classe servant à l'interaction textuellle pour la recherche d'évènements
+ */
 
 import InterTree.Tree;
 import events.AllEvents;
@@ -12,6 +15,11 @@ public class TextualInteraction {
     static ArrayList<String> types;
     String city;
 
+    /**
+     * Constructeur
+     *
+     * @param cite ville
+     */
     public TextualInteraction(String cite) {
         types = new ArrayList<>();
         this.city = cite;
@@ -24,6 +32,11 @@ public class TextualInteraction {
         types.add("theatre");
     }
 
+    /**
+     * Méthode permettant d'effectuer le choix de la manière de rechercher
+     *
+     * @return un entier entre 1 et 4 correspondant à la matière de rechercher
+     */
     int choose() {
         Scanner res = new Scanner(System.in);
         System.out.println("Voulez vous rechercher par :\n" +
@@ -34,6 +47,14 @@ public class TextualInteraction {
         return res.nextInt();
     }
 
+    /**
+     * Méthode effectuant la recherche d'évènements
+     *
+     * @param i résultat de choose()
+     * @param t arbre d'intervalle contenant les évènements au cas où on fait une recherche
+     *          par date
+     * @return found, la liste des évènements trouvés(éventuellement vide)
+     */
     ArrayList<Event> search(int i, Tree t) {
         String m = "";
         ArrayList<Event> found = new ArrayList<>();
@@ -92,11 +113,26 @@ public class TextualInteraction {
         return found;
     }
 
+    /**
+     * méthode appelée après une recherche et donnant un feedback sur celle-ci
+     *
+     * @param events liste traitée
+     */
     void success(ArrayList<Event> events) {
-        System.out.println("Votre recherche a été effectuée, voici les évènements trouvés:");
-        display(events);
+        if (events.isEmpty()) {
+            System.out.println("Recherche peu fructueuse désolés.");
+        } else {
+            System.out.println("Votre recherche a été effectuée, voici les évènements trouvés:");
+            display(events);
+        }
     }
 
+    /**
+     * Affiche un message d'erreur personnalisé en fonction de l'erreur rencontrée s'il y
+     * en a eu une
+     *
+     * @param errorType String décrivant le type d'erreur(type/date/référence)
+     */
     void failMessage(String errorType) {
         if (errorType.equals("error1")) {
             System.out.println("Le type renseigné n'existe pas, nous vous conseillons de recommencer une recherche.");
@@ -109,6 +145,11 @@ public class TextualInteraction {
         }
     }
 
+    /**
+     * Récupère le type d'évènements recherché si on fait une recherche par type
+     *
+     * @return le type
+     */
     String byType() {
         Scanner res = new Scanner(System.in);
         System.out.println("Quel type d'évènements voulez voir :\n" +
@@ -119,10 +160,21 @@ public class TextualInteraction {
         return res.nextLine();
     }
 
+    /**
+     * Test si le type souhaité existe
+     *
+     * @param type le type renseigné
+     * @return true si le type n'existe pas false s'il existe
+     */
     boolean failTypeTest(String type) {
         return !types.contains(type);
     }
 
+    /**
+     * Récupère la date pour une recherche par date
+     *
+     * @return la date sous form de tableau de deux entiers
+     */
     int[] byDate() {
         Scanner res = new Scanner(System.in);
         System.out.println("Veuillez entrer la date de début de la recherche entre 0 et 366");
@@ -133,27 +185,55 @@ public class TextualInteraction {
         return new int[]{start, end};
     }
 
+    /**
+     * Teste la validité de la date renseignée
+     *
+     * @param start jour de début
+     * @param end   jour de fin
+     * @return true si la date est non conforme false si elle l'est
+     */
     boolean dateFail(int start, int end) {
-        return ((start | end) < 0) | ((start | end) > 366) | start > end;
+        return (((start | end) < 0) | ((start | end) > 366) | start > end);
     }
 
+    /**
+     * Récupère les informations nécessaires à la recherche croisée
+     *
+     * @return les informations sous forme de tableau de String
+     */
     String[] byBoth() {
         int[] date = byDate();
         return new String[]{byType(), "" + date[0], "" + date[1]};
     }
 
+    /**
+     * Récupère la référence pour une recherche par référence
+     *
+     * @return référence renseignée
+     */
     String byRef() {
         Scanner res = new Scanner(System.in);
         System.out.println("Veuillez entrer la référence de l'évènement souhaité.");
         return res.nextLine();
     }
 
+    /**
+     * Affichage textuel d'une liste d'évènements
+     *
+     * @param events liste dont on veut faire l'affichage
+     */
     void display(ArrayList<Event> events) {
         for (Event event : events) {
             event.present();
+            System.out.println("\n");
         }
     }
 
+    /**
+     * Sortie de l'interaction textuelle,propose un dernier affichage des évènements trouvés
+     *
+     * @param events list d'évènements trouvés
+     */
     void exit(ArrayList<Event> events) {
         String display = "yes";
         while (display.equals("yes")) {
@@ -166,6 +246,11 @@ public class TextualInteraction {
         System.out.println("Merci d'avoir utilisé notre système de recherche.");
     }
 
+    /**
+     * Totalité de l'interaction
+     *
+     * @param t Arbre d'intervalles conntenant les noeuds correspondant aux évènements
+     */
     public void run(Tree t) {
         System.out.println("Bienvenue sur le système de recherche d'évènements de " + this.city);
         ArrayList<Event> found = new ArrayList<>();
@@ -184,6 +269,13 @@ public class TextualInteraction {
 
     }
 
+    /**
+     * Ajout d'évènements à notre liste de résultats via d'autres recherches
+     *
+     * @param t      Arbre d'intervalle
+     * @param events événements déjà trouvés
+     * @return liste à laquelle on a ajouté(ou non) des évènements
+     */
     ArrayList<Event> add(Tree t, ArrayList<Event> events) {
         ArrayList<Event> found;
         Scanner sc = new Scanner(System.in);
@@ -201,12 +293,20 @@ public class TextualInteraction {
         return events;
     }
 
+    /**
+     * Sert à savoir si on veut refaire une recherche
+     *
+     * @return la réponse de l'utilisateur
+     */
     String redo() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Souhaitez-vous effectuer une nouvelle recherche?(tapez \"oui\" ou \"non\")");
         return sc.nextLine();
     }
 
+    /**
+     * Affiche le message correspondant à n recherche qui ne renvoie pas de résultat
+     */
     void emptyMessage() {
         System.out.println("Il semble que le résultat de votre recherche est vide, nous vous conseillons de réessayer.");
     }

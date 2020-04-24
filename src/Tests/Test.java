@@ -2,6 +2,7 @@ package Tests;
 
 import InterTree.Node;
 import InterTree.Tree;
+import Interaction.TextualInteraction;
 import events.Event;
 import events.NBASeries;
 import events.SportEvent;
@@ -32,6 +33,8 @@ public class Test {
         tt.addEvent(nn);
         tt.addEvent(nb);
         tt.addEvent(s);
+        TextualInteraction t = new TextualInteraction("Quahog");
+        t.run(tt);
 
 
     }
