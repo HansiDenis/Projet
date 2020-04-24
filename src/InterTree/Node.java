@@ -1,11 +1,10 @@
 package InterTree;
-/**
- * Classe représentant les noeuds de l'arbre d'intervalles
- */
 
 import events.Event;
+
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
+
 
 public class Node {
     int min;
@@ -13,12 +12,6 @@ public class Node {
     int dmax;
     ArrayList<String> events;
 
-    /**
-     * Constructeur avec tous les paramètres
-     * @param mi minimum de l'intervalle
-     * @param ma maximum de l'intervalle
-     * @param events ArrayList des références des évènements associés aux dates du noeud
-     */
     Node(int mi, int ma, ArrayList<String> events) {
         min = mi;
         max = ma;
@@ -26,11 +19,6 @@ public class Node {
         this.events = events;
     }
 
-    /**
-     * 
-     * @param mi
-     * @param ma
-     */
     public Node(int mi, int ma) {
         this.min = mi;
         this.max = ma;

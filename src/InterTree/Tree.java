@@ -163,9 +163,6 @@ public class Tree {
 
     public ArrayList<String> dateSearch(int mi, int ma) {
         ArrayList<String> found = new ArrayList<>();
-        if (mi > ma){
-            return null;
-        }
         if (this.root.max >= mi && this.root.min <= ma) {
             found.addAll(this.root.events);
         }
