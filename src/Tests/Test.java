@@ -35,7 +35,5 @@ public class Test {
         tt.addEvent(s);
         TextualInteraction t = new TextualInteraction("Quahog");
         t.run(tt);
-
-
     }
 }

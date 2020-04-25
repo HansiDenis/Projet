@@ -7,7 +7,6 @@ public class Theatre extends Event {
 
     public String leadActor;
     public int seats;
-    String title;
     String genre;
 
     /**
@@ -53,10 +52,10 @@ public class Theatre extends Event {
      */
     @Override
     public String reference() {
-        if (title.length() <= 2) {
-            return "TE-" + title + eventNumber + "-" + this.start + "-" + this.end;
+        if (name.length() <= 2) {
+            return "TE-" + name + eventNumber + "-" + this.start + "-" + this.end;
         }
-        return "TE-" + title.substring(0, 2) + eventNumber + "-" + this.start + "-" + this.end;
+        return "TE-" + name.substring(0, 2) + eventNumber + "-" + this.start + "-" + this.end;
     }
 
     /**

@@ -177,10 +177,10 @@ public class TextualInteraction {
      */
     int[] byDate() {
         Scanner res = new Scanner(System.in);
-        System.out.println("Veuillez entrer la date de début de la recherche entre 0 et 366");
+        System.out.println("Veuillez entrer la date de début de la recherche entre 1 et 366");
         int start = res.nextInt();
         Scanner res2 = new Scanner(System.in);
-        System.out.println("Veuillez entrer la date de fin de la recherche entre 0 e;t 366 et > à celle de début");
+        System.out.println("Veuillez entrer la date de fin de la recherche entre 1 et 366 et > à celle de début");
         int end = res2.nextInt();
         return new int[]{start, end};
     }
@@ -193,7 +193,7 @@ public class TextualInteraction {
      * @return true si la date est non conforme false si elle l'est
      */
     boolean dateFail(int start, int end) {
-        return (((start | end) < 0) | ((start | end) > 366) | start > end);
+        return (((start | end) <= 0) | ((start | end) > 366) | start > end);
     }
 
     /**
@@ -309,5 +309,9 @@ public class TextualInteraction {
      */
     void emptyMessage() {
         System.out.println("Il semble que le résultat de votre recherche est vide, nous vous conseillons de réessayer.");
+    }
+
+    public void main() {
+        run(AllEvents.createBaseEvents());
     }
 }

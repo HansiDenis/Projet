@@ -15,25 +15,35 @@ public class Tree {
     Tree left;
 
     /**
-     * Constructeur
+     * Constructeur d'un arbre
      *
-     * @param root
-     * @param right
-     * @param left
+     * @param root  noeud servant de racine à l'arbre
+     * @param right sous arbre droit
+     * @param left  sous arbre gauche
      */
     public Tree(Node root, Tree right, Tree left) {
         this.root = root;
         this.right = right;
         this.left = left;
         if (this.right != null) {
-            this.root.dmax = this.right.calcmax(this.right.getMax());
+            this.root.dmax = this.right.calcmax(this.right.getRootMax());
         }
     }
 
+    /**
+     * Constructeur d'arbre sans sous-arbres
+     *
+     * @param root noeud racine de l'arbre
+     */
     public Tree(Node root) {
         this(root, null, null);
     }
 
+    /**
+     * Affichage de l'arbre
+     *
+     * @return Représentation en String de l'arbre
+     */
     public String toString() {
         String s = "\nVALEUR : [" + this.root.min + "," + this.root.max + "] ";
         if (left != null)
@@ -45,13 +55,25 @@ public class Tree {
         return s;
     }
 
-    int getMax() {
+    /**
+     * Getter du maximum de la racine de l'arbre
+     *
+     * @return le maximum de la racine de l'arbre
+     */
+    int getRootMax() {
         return this.root.max;
     }
 
+    /**
+     * Calcul du maximum de l'arbre courant en parcourant récursivementles sous arbres
+     * gauche et droit tant qu'ils ne sont pas vides
+     *
+     * @param max maximum de base(maximum de l'intervalle)
+     * @return le maximum absolu de l'arbre d'intervalle
+     */
     int calcmax(int max) {
         if (right != null) {
-            int maxright = right.getMax();
+            int maxright = right.getRootMax();
             if (maxright >= max) {
                 max = maxright;
             }
@@ -59,7 +81,7 @@ public class Tree {
         }
 
         if (left != null) {
-            int maxleft = left.getMax();
+            int maxleft = left.getRootMax();
             if (maxleft >= max) {
                 max = maxleft;
             }
@@ -69,6 +91,9 @@ public class Tree {
         return max;
     }
 
+    /**
+     * Mise à jour récursive de tous les dmax de chacun des noeuds de l'arbre
+     */
     void updateDMaxes() {
         if (this.right == null) {
             this.root.dmax = this.root.max;
@@ -77,10 +102,18 @@ public class Tree {
             this.left.updateDMaxes();
         }
         if (this.right != null) {
-            this.root.dmax = this.right.calcmax(this.right.getMax());
+            this.root.dmax = this.right.calcmax(this.right.getRootMax());
             this.right.updateDMaxes();
         }
     }
+
+    /**
+     * Méthode non utiisée qui a servit de base à insert et qui permet la concaténation d'
+     * un arbre à la suite d'un autre(nous n'étions intitialement pas sûrs du sens
+     * d'insertion)
+     *
+     * @param n arbre à ajouter
+     */
     void add(Tree n) {
         if (this.root.dateEqual(n.root)) {
             this.root.events.addAll(n.root.events);
@@ -109,6 +142,12 @@ public class Tree {
         }
     }
 
+    /**
+     * Insertion d'un noeud dans l'arbre en le classant d'abord par rapport à sa borne
+     * gauche puis s'il y a égalité, par sa borne droite
+     *
+     * @param n le noeud que l'on veut insérer dans l'arbre
+     */
     public void insert(Node n) {
         if (this.root.dateEqual(n)) {
             this.root.addEvents(n.events);
@@ -167,16 +206,25 @@ public class Tree {
         }
     }
 
+    /**
+     * Recherche par date
+     *
+     * @param mi jour de début de la recherche
+     * @param ma jour de fin de la recherche
+     * @return ArrayList de String correspondant aux  références des évènements répondant
+     * à la recherche
+     */
     public ArrayList<String> dateSearch(int mi, int ma) {
-        if (mi > ma) {
-            System.out.println("Erreur :minimum supérieur au maximum recherche au rés ");
-        }
         ArrayList<String> found = new ArrayList<>();
+        if (mi > ma) {
+            System.out.println("Erreur :minimum supérieur au maximum recherche au résultat nul. ");
+            return found;
+        }
         if (this.root.max >= mi && this.root.min <= ma) {
             found.addAll(this.root.events);
         }
         if (this.left != null) {
-            if (this.left.calcmax(this.left.getMax()) >= mi) {
+            if (this.left.calcmax(this.left.getRootMax()) >= mi) {
                 found.addAll(this.left.dateSearch(mi, ma));
             }
         }
@@ -188,6 +236,15 @@ public class Tree {
         return found;
     }
 
+    /**
+     * Recherche croisée type/date
+     *
+     * @param mi   jour de début de la recherche
+     * @param ma   jour de fin de la recherche
+     * @param type type d'évènements recherchés
+     * @return liste (éventuellement vide) d'évènements du type souhaité et dont les dates
+     * intersèctent l'intervalle de recherche
+     */
     public ArrayList<Event> mixedSearch(int mi, int ma, String type) {
         ArrayList<Event> mixedRes = new ArrayList<>();
         ArrayList<String> dateRes = this.dateSearch(mi, ma);
@@ -203,6 +260,11 @@ public class Tree {
         return mixedRes;
     }
 
+    /**
+     * Ajout d'un évènement et de son noeud  correspondant dans l'arbre
+     *
+     * @param event évènement à ajouter à l'arbre
+     */
     public void addEvent(Event event) {
         Node n = new Node(event.getStart(), event.getEnd());
         n.addEvent(event);

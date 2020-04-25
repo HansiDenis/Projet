@@ -42,6 +42,7 @@ public class SportEvent extends Event {
     @Override
     public void present() {
         super.present();
+        System.out.println("Sport concerné: " + this.sport);
         System.out.println("En " + this.sport + ",l'important c'est la concentration et vous prendrez plaisir à voir ces athlètes pratiquer au plus haut niveau.");
         if (cashPrize != 0) {
             System.out.println("Les participants se disputeront " + this.cashPrize + " euros.");

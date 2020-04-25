@@ -1,5 +1,9 @@
 package events;
 //Cette classe sert à la modélisation du rassemblement de tous les évènements
+
+import InterTree.Node;
+import InterTree.Tree;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +46,32 @@ public class AllEvents {
             return singleInstance;
         }
         return singleInstance;
+    }
+
+    public static Tree createBaseEvents() {
+        NBASeries nba = new NBASeries("Finales NBA 2020", "Quahog Sports Arena", 110, 150, "Lakers", "Bucks", 35000);
+        Node base = new Node(110, 150);
+        base.addEvent(nba.reference());
+        Tree t = new Tree(base);
+        SportEvent comp = new SportEvent("Compétition de l'homme le plus fort du monde", "Quahog Beach", 220, 300, "Bodybuilding", true, 100000);
+        t.addEvent(comp);
+        Party car = new Party(1, 50, "Downtown Quahog", "Carnaval de Quahog", "Carnaval", "Les grands explorateurs", 0);
+        t.addEvent(car);
+        Party ann = new Party(69, 69, "Maison de Peter", "Anniversaire de Peter Griffin", "anniversaire", "Giraffes", 6);
+        t.addEvent(ann);
+        Theatre tay = new Theatre(310, 366, "Quahog's Noble Arts Palace", "L'Histoire de Taylor Swift", "Taylor Swift elle-même", 5000, "Drame");
+        t.addEvent(tay);
+        Conference flat = new Conference(140, 300, "Université des Science", "Conférence internationale des Flat-eathers", "Science", true);
+        t.addEvent(flat);
+        Conference anim = new Conference(40, 120, "Parc des Expositions", "Quahog Anim", "animation japonaise", false);
+        t.addEvent(anim);
+        Comedy bri = new Comedy(200, 300, "The Joking Bar", "Une vie de chien", "one-man show", 1.5);
+        t.addEvent(bri);
+        Comedy disc = new Comedy(1, 1, "Mairie", "Discours du nouvel-an du maire", "discours déroutant", 0.5);
+        t.addEvent(disc);
+        FoodAndDrink op = new FoodAndDrink(1, 366, "La palourde Pompette", "Open Year", "open-bar", "expérimentale");
+        t.addEvent(op);
+        return t;
     }
 
     /**

@@ -5,7 +5,8 @@ package events;
  */
 public class FoodAndDrink extends Event {
 
-    public String kind; //le type, ie si c'est un restaurant, un bar, etc
+    String kind; //le type, ie si c'est un restaurant, un bar, etc
+    String cuisine;
 
     /**
      * Constructeur
@@ -16,7 +17,7 @@ public class FoodAndDrink extends Event {
      * @param name  intitulé de l'évènement
      * @param genre type d'évènement Food&Drink
      */
-    public FoodAndDrink(int start, int end, String place, String name, String genre) {
+    public FoodAndDrink(int start, int end, String place, String name, String genre, String cui) {
         NUMBER_OF_EVENTS += 1;
         this.eventNumber = NUMBER_OF_EVENTS;
         this.start = start;
@@ -25,6 +26,7 @@ public class FoodAndDrink extends Event {
         this.name = name;
         this.type = "f&d";
         this.kind = genre;
+        this.cuisine = cui;
         AllEvents.getInstance().addEvent(this);
     }
 
@@ -34,7 +36,8 @@ public class FoodAndDrink extends Event {
     @Override
     public void present() {
         super.present();
-        System.out.println("Venez vous régaler avec nous dans notre" + this.kind + ".");
+        System.out.println("Venez vous régaler avec nous dans notre " + this.kind + " et profiter de notre cuisine " + this.cuisine + ".");
+
     }
 
     /**

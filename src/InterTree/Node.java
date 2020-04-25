@@ -96,7 +96,7 @@ public class Node {
     }
 
     /**
-     * Méthode d'affichage du noeud
+     * Méthode d'affichage du noeud d'intervalles
      *
      * @return affichage textuel du noeud
      */

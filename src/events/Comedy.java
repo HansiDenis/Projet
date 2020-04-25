@@ -6,18 +6,19 @@ package events;
 public class Comedy extends Event {
 
     String ComedyType;
-    int runTime;
+    double runTime;
     int note;
 
     /**
      * Constructeur d'un évènement de type comédie et ajout de celui-ci à la HashMap hashAll
-     *  @param start      jour de début
+     *
+     * @param start      jour de début
      * @param end        jour de fin
      * @param place      lieu
      * @param name       intitulé de l'évènement
      * @param ComedyType type de comédie
      */
-    public Comedy(int start, int end, String place, String name, String ComedyType) {
+    public Comedy(int start, int end, String place, String name, String ComedyType, double runiTime) {
         NUMBER_OF_EVENTS += 1;
         this.eventNumber = NUMBER_OF_EVENTS;
         this.start = start;
@@ -27,7 +28,7 @@ public class Comedy extends Event {
         this.type = "comedy";
         this.ComedyType = ComedyType;
         if (ComedyType.equals("one-man show")) {
-            this.note = note;
+            this.note = 18;
         }
         this.runTime = runiTime;
         AllEvents.getInstance().addEvent(this);
@@ -38,12 +39,12 @@ public class Comedy extends Event {
      */
     @Override
     public void present() {
-
+        super.present();
         System.out.println("La comédie est là pour vous faire rire et vous changez les idées.\n"
-                + "Durée du spectacle: " + this.runTime + " heures");
+                + "Durée du spectacle: " + this.runTime * 60 + " minutes");
         if (ComedyType.equals("one-man show")) {
             System.out.println("C'est un one-man show si vous le souhaitez, vous pouvez mettre une note sur tripadvisor.\n"
-                    + "La note actuelle est de" + this.note + ".");
+                    + "La note actuelle est de" + this.note + " sur notre barême.");
         }
     }
 
