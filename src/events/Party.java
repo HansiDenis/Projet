@@ -1,4 +1,7 @@
 package events;
+/**
+ * Authors:MALTESE Salomé et DENIS Hansi
+ **/
 
 /**
  * Classe représentant les évènements festifs

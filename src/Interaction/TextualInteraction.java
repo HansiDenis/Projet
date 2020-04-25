@@ -1,5 +1,13 @@
 package Interaction;
 /**
+ * Authors:MALTESE Salomé et DENIS Hansi
+ * <p>
+ * Classe servant à l'interaction textuellle pour la recherche d'évènements
+ * <p>
+ * Classe servant à l'interaction textuellle pour la recherche d'évènements
+ */
+
+/**
  * Classe servant à l'interaction textuellle pour la recherche d'évènements
  */
 
@@ -235,14 +243,13 @@ public class TextualInteraction {
      * @param events list d'évènements trouvés
      */
     void exit(ArrayList<Event> events) {
-        String display = "yes";
-        while (display.equals("yes")) {
-            Scanner res = new Scanner(System.in);
-            System.out.println("Voulez-vous voir l'affichage de tout vos évènements?\n"
-                    + "Tapez \"non\" si vous ne souhaitez pas l'affichage, il sera effectué dans tout autre cas");
-            display = res.nextLine();
+        Scanner res = new Scanner(System.in);
+        System.out.println("Voulez-vous voir l'affichage de tout vos évènements?\n"
+                + "Tapez \"non\" si vous ne souhaitez pas l'affichage, il sera effectué dans tout autre cas.");
+        if (!res.nextLine().equals("non")) {
             display(events);
         }
+
         System.out.println("Merci d'avoir utilisé notre système de recherche.");
     }
 
@@ -311,6 +318,9 @@ public class TextualInteraction {
         System.out.println("Il semble que le résultat de votre recherche est vide, nous vous conseillons de réessayer.");
     }
 
+    /**
+     * Méthode créant les évènements puis lançant l'interaction textuelle
+     */
     public void main() {
         run(AllEvents.createBaseEvents());
     }

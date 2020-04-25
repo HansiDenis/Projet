@@ -1,5 +1,7 @@
 package events;
-
+/**
+ * Authors:MALTESE Salomé et DENIS Hansi
+ **/
 /**
  * Classe  représentant les Séries NBA,confrontations en 4 matchs gagnants entre deux
  * de NBA(Association américaine de basketball)

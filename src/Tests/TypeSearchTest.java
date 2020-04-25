@@ -1,5 +1,7 @@
 package Tests;
-
+/**
+ * Authors:MALTESE Salomé et DENIS Hansi
+ **/
 import events.*;
 
 import java.util.ArrayList;

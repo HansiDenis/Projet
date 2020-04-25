@@ -1,5 +1,12 @@
 package InterTree;
 /**
+ * Authors:MALTESE Salomé et DENIS Hansi
+ * <p>
+ * Classe représentant les noeuds de l'arbre d'intervalles
+ * <p>
+ * Classe représentant les noeuds de l'arbre d'intervalles
+ */
+/**
  * Classe représentant les noeuds de l'arbre d'intervalles
  */
 

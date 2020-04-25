@@ -1,5 +1,7 @@
 package events;
-
+/**
+ * Authors:MALTESE Salomé et DENIS Hansi
+ **/
 /**
  * Classe abstraite servant de base pour la création via héritage d'évènements plus précis
  */

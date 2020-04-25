@@ -1,5 +1,12 @@
 package InterTree;
 /**
+ * Authors:MALTESE Salomé et DENIS Hansi
+ * <p>
+ * Classe servant à la représentation des arbres d'intervalles
+ * <p>
+ * Classe servant à la représentation des arbres d'intervalles
+ */
+/**
  * Classe servant à la représentation des arbres d'intervalles
  */
 
@@ -155,9 +162,9 @@ public class Tree {
             return;
         }
         if (this.root.min == n.min && this.root.max != n.max) {
-            if (this.root.max <= n.max) {
+            if (this.root.max < n.max) {
                 if (this.right != null) {
-                    this.right.insert(n);
+                    this.replaceRight(n);
                 } else {
                     this.right = new Tree(n);
                     this.updateDMaxes();
@@ -165,7 +172,7 @@ public class Tree {
                 }
             } else {
                 if (this.left != null) {
-                    this.left.insert(n);
+                    this.replaceLeft(n);
                 } else {
                     this.left = new Tree(n);
                     this.updateDMaxes();
@@ -179,15 +186,7 @@ public class Tree {
                 this.updateDMaxes();
                 return;
             }
-            if (n.min < this.right.root.min) {
-                Tree temp = this.right;
-                this.right = new Tree(n);
-                this.right.right = temp;
-                this.updateDMaxes();
-                return;
-            } else {
-                this.right.insert(n);
-            }
+            this.replaceRight(n);
         }
         if (n.min < this.root.min) {
             if (this.left == null) {
@@ -195,14 +194,39 @@ public class Tree {
                 this.updateDMaxes();
                 return;
             }
-            if (n.min > this.left.root.min) {
-                Tree temp = this.left;
-                this.left = new Tree(n);
-                this.left.left = temp;
-                this.updateDMaxes();
-            } else {
-                this.left.insert(n);
-            }
+            this.replaceLeft(n);
+        }
+    }
+
+    /**
+     * Méthode permettant de remplacer si besoin la racine du sous arbe droit
+     *
+     * @param n noeud à placer
+     */
+    void replaceRight(Node n) {
+        if (n.min < this.right.root.min) {
+            Tree temp = this.right;
+            this.right = new Tree(n);
+            this.right.right = temp;
+            this.updateDMaxes();
+        } else {
+            this.right.insert(n);
+        }
+    }
+
+    /**
+     * Méthode permettant de remplacer si besoin la racine du sous arbe gauche
+     *
+     * @param n noeud à placer
+     */
+    void replaceLeft(Node n) {
+        if (n.min > this.left.root.min) {
+            Tree temp = this.left;
+            this.left = new Tree(n);
+            this.left.left = temp;
+            this.updateDMaxes();
+        } else {
+            this.left.insert(n);
         }
     }
 

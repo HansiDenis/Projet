@@ -1,6 +1,12 @@
 package Tests;
+/**
+ * Authors:MALTESE Salomé et DENIS Hansi
+ **/
 
-import events.*;
+import events.AllEvents;
+import events.Event;
+import events.FoodAndDrink;
+import events.NBASeries;
 
 public class RefSearchTest {
 
@@ -16,14 +22,16 @@ public class RefSearchTest {
 
 
     public void positiveTest() {
-        Event res = AllEvents.getInstance().refSearch("FDE-fas-2-5-42");
+        Event res = AllEvents.getInstance().refSearch("FDE-fa2-5-42");
         System.out.println("Test d'une reference existante : ");
-        System.out.println("Evenement trouvé : " + res + "\nRéférence correspondante : " + res.reference());
+        System.out.println("Evenement trouvé.\nRéférence correspondante : " + res.reference());
+        res.present();
     }
 
     public void negativeTest(){
         System.out.println("Test d'une référence non existante : ");
         Event res = AllEvents.getInstance().refSearch("FDE");
+        System.out.println("Résultat de hasNoType:" + res.hasNoType() + "\n true donc l'évènement est vide");
 
     }
 

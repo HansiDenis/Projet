@@ -1,4 +1,7 @@
 package events;
+/**
+ * Authors:MALTESE Salomé et DENIS Hansi
+ **/
 //Cette classe sert à la modélisation du rassemblement de tous les évènements
 
 import InterTree.Node;
@@ -61,15 +64,15 @@ public class AllEvents {
         t.addEvent(ann);
         Theatre tay = new Theatre(310, 366, "Quahog's Noble Arts Palace", "L'Histoire de Taylor Swift", "Taylor Swift elle-même", 5000, "Drame");
         t.addEvent(tay);
-        Conference flat = new Conference(140, 300, "Université des Science", "Conférence internationale des Flat-eathers", "Science", true);
+        Conference flat = new Conference(140, 300, "Université des Sciences", "Conférence internationale des Flat-eathers", "Science", true);
         t.addEvent(flat);
-        Conference anim = new Conference(40, 120, "Parc des Expositions", "Quahog Anim", "animation japonaise", false);
+        Conference anim = new Conference(40, 120, "Parc des Expositions", "QuahogAnim", "animation japonaise", false);
         t.addEvent(anim);
         Comedy bri = new Comedy(200, 300, "The Joking Bar", "Une vie de chien", "one-man show", 1.5);
         t.addEvent(bri);
         Comedy disc = new Comedy(1, 1, "Mairie", "Discours du nouvel-an du maire", "discours déroutant", 0.5);
         t.addEvent(disc);
-        FoodAndDrink op = new FoodAndDrink(1, 366, "La palourde Pompette", "Open Year", "open-bar", "expérimentale");
+        FoodAndDrink op = new FoodAndDrink(300, 330, "La palourde Pompette", "Open bar", "open-bar", "expérimentale");
         t.addEvent(op);
         return t;
     }
@@ -108,6 +111,8 @@ public class AllEvents {
      * @return found, l'évènement trouvé via la recherche (éventuellement vide)
      */
     public Event refSearch(String wanted) {
+        //On veut pouvoir renvoyer un évènement vide si la recherche échoue
+        //dans le but d'éviter de rencontrer une NullPointerException plus tard
         Event found = new Event() {
             @Override
             public void present() {

@@ -1,5 +1,9 @@
 package events;
 /**
+ * Authors:MALTESE Salomé et DENIS Hansi
+ **/
+
+/**
  * Classe représentant les évènements de type conférence
  */
 public class Conference extends Event {

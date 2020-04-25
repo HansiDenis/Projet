@@ -1,5 +1,7 @@
 package Tests;
-
+/**
+ * Authors:MALTESE Salomé et DENIS Hansi
+ **/
 import InterTree.Node;
 import InterTree.Tree;
 import Interaction.TextualInteraction;
